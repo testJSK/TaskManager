@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package kir.tm.v_1.controller;
 
 import kir.tm.v_1.entity.TaskEntity;
@@ -15,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -29,9 +26,16 @@ public class TaskController {
     private TaskService taskService;
     
     @GetMapping
-    public ResponseEntity getAll() {
+    public ResponseEntity getAll(@RequestParam Long parentId) {
+        System.out.println(parentId);
+        System.out.println("***********---=========");
         try {
-            return ResponseEntity.ok(taskService.getAll());
+            if(parentId == null ) {
+                return ResponseEntity.ok(taskService.getAll());
+            } else {
+                return ResponseEntity.ok(taskService.getAllByPerentId(parentId));
+            }
+            
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error get all tasks");
         }
@@ -56,9 +60,10 @@ public class TaskController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("error id "+ id);
         }
-    }
+    }    
     
     @PutMapping("/{id}")
+    // @PutMapping("/{id}") cors wtf
     public ResponseEntity update(
             @PathVariable Long id,
             @RequestBody TaskEntity task) {

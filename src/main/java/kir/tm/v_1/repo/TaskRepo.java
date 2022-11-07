@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package kir.tm.v_1.repo;
 
+import java.util.List;
 import java.util.Optional;
 import kir.tm.v_1.entity.TaskEntity;
 import org.springframework.data.repository.CrudRepository;
@@ -15,5 +12,7 @@ import org.springframework.data.repository.CrudRepository;
 public interface TaskRepo extends CrudRepository<TaskEntity, Long>{
 
     public TaskEntity save(Optional<TaskEntity> task);
+
+    public List <TaskEntity> findAllByParentId(Long parentId);
     
 }

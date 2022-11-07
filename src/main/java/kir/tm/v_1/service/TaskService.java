@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package kir.tm.v_1.service;
 
 import java.util.Date;
@@ -29,6 +25,15 @@ public class TaskService {
         
         if (tasks == null ) {
             throw new Exception("tasks do not get from db");
+        }
+        return tasks;
+    }
+
+    public List<TaskEntity> getAllByPerentId(Long parentId) throws Exception {
+        List<TaskEntity> tasks = (List<TaskEntity>) taskRepo.findAllByParentId(parentId);
+
+        if(tasks == null ) {
+            throw new Exception("dont get by perent ID");
         }
         return tasks;
     }

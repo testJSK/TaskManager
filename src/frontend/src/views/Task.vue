@@ -100,8 +100,16 @@
       </div>
 
     </div>
-    
-
+    <hr>
+<div class="row">
+  <div class="col">
+    <ol class="list-group list-group-numbered">
+      <li class="list-group-item" v-for="i in childTasks" :key="i.id">
+        {{ i.title }}
+      </li>
+    </ol>
+  </div>
+</div>
   </div>    
 </template>
 
@@ -129,6 +137,7 @@ export default {
   },
   methods: {
     ...mapActions( 'persons', {addPerson: 'add' , updatePerson: 'update'} ),
+    
     save(person){     
         console.log(' save = UPDATE ')
     },

@@ -30,7 +30,7 @@ public class TaskEntity implements Serializable{
     private String description;
     
     @Column(name = "parent_task_id")
-    private Long parentTaskId;
+    private Long parentId;
     
     @Column(name = "initiator_id")
     private Long initiatorId;
@@ -85,12 +85,12 @@ public class TaskEntity implements Serializable{
         this.description = description;
     }
 
-    public Long getParentTaskId() {
-        return parentTaskId;
+    public Long getParentId() {
+        return parentId;
     }
 
-    public void setParentTaskId(Long parentTaskId) {
-        this.parentTaskId = parentTaskId;
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 
     public Long getInitiatorId() {
@@ -159,7 +159,7 @@ public class TaskEntity implements Serializable{
 
     @Override
     public String toString() {
-        return "TaskEntity{" + "id=" + id + ", title=" + title + ", description=" + description + ", parentTaskId=" + parentTaskId + ", initiatorId=" + initiatorId + ", managerId=" + managerId + ", dateStart=" + dateStart + ", dateEnd=" + dateEnd + ", taskTypeId=" + taskTypeId + ", workAppId=" + workAppId + '}';
+        return "TaskEntity{" + "id=" + id + ", title=" + title + ", description=" + description + ", parentId=" + parentId + ", initiatorId=" + initiatorId + ", managerId=" + managerId + ", dateStart=" + dateStart + ", dateEnd=" + dateEnd + ", taskTypeId=" + taskTypeId + ", workAppId=" + workAppId + '}';
     }
 
     
@@ -169,7 +169,7 @@ public class TaskEntity implements Serializable{
         hash = 89 * hash + Objects.hashCode(this.id);
         hash = 89 * hash + Objects.hashCode(this.title);
         hash = 89 * hash + Objects.hashCode(this.description);
-        hash = 89 * hash + Objects.hashCode(this.parentTaskId);
+        hash = 89 * hash + Objects.hashCode(this.parentId);
         hash = 89 * hash + Objects.hashCode(this.initiatorId);
         hash = 89 * hash + Objects.hashCode(this.managerId);
         hash = 89 * hash + Objects.hashCode(this.dateStart);
@@ -200,7 +200,7 @@ public class TaskEntity implements Serializable{
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.parentTaskId, other.parentTaskId)) {
+        if (!Objects.equals(this.parentId, other.parentId)) {
             return false;
         }
         if (!Objects.equals(this.initiatorId, other.initiatorId)) {
