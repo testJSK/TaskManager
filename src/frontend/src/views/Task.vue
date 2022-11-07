@@ -99,7 +99,6 @@
         </div>
       </div>
 
-    </div>
     <hr>
 <div class="row">
   <div class="col">
@@ -110,6 +109,9 @@
     </ol>
   </div>
 </div>
+
+
+    </div>
   </div>    
 </template>
 
@@ -128,12 +130,14 @@ export default {
     taskTypesSelected: null,
     workAppsSelected: null,
     ZRS: {},
+    childTasks: {},
   }),
   computed: {     
     // ...mapGetters( 'tasks',  { task: 'editItem' } ),
     id(){
       return this.$route.params.id;
     },
+
   },
   methods: {
     ...mapActions( 'persons', {addPerson: 'add' , updatePerson: 'update'} ),
@@ -161,6 +165,9 @@ export default {
   async created(){
     let getTask = await this.$api.tasks.getOne(this.id);
     this.task = getTask;  
+console.log(this.task.id)
+console.log(this.task)
+console.log(this.task.parentId)
 
     let getTaskTypes = await this.$api.taskTypes.all();
     this.taskTypes = getTaskTypes;
@@ -171,6 +178,16 @@ export default {
     console.log(getWorkApps)
     this.workApps = getWorkApps;
     this.workAppsSelected = this.task.workAppId;
+
+    if(this.task.parentId){
+      let childTasks = await this.$api.tasks.allByParentId( await this.task.parentId)
+      console.log(childTasks)
+      this.childTasks = childTasks;
+    }
+
+    -let taskStatus = await this.$api++++-65451+-5
+
+    
   },
 
 }

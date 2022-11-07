@@ -29,7 +29,7 @@ public class TaskEntity implements Serializable{
     @Column(name = "description")
     private String description;
     
-    @Column(name = "parent_task_id")
+    @Column(name = "parent_id")
     private Long parentId;
     
     @Column(name = "initiator_id")

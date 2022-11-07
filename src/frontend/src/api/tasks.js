@@ -27,5 +27,12 @@ export default ( http ) => ({
 			}
 		});
 		return response.data;
+	},
+	
+	async allByParentId( id ){
+		console.log(id)
+		let response = await http.get(`tasks?parentId=${id}`);
+
+		return response.data;
 	}
 })

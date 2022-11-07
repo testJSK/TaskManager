@@ -29,7 +29,7 @@ public class TaskService {
         return tasks;
     }
 
-    public List<TaskEntity> getAllByPerentId(Long parentId) throws Exception {
+    public List<TaskEntity> getAllByParentId(Long parentId) throws Exception {
         List<TaskEntity> tasks = (List<TaskEntity>) taskRepo.findAllByParentId(parentId);
 
         if(tasks == null ) {

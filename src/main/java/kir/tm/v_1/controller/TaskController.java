@@ -26,21 +26,19 @@ public class TaskController {
     private TaskService taskService;
     
     @GetMapping
-    public ResponseEntity getAll(@RequestParam Long parentId) {
-        System.out.println(parentId);
-        System.out.println("***********---=========");
+    public ResponseEntity getAll(@RequestParam(required=false) String parentId) {     
         try {
-            if(parentId == null ) {
+            if(parentId == null) {
                 return ResponseEntity.ok(taskService.getAll());
             } else {
-                return ResponseEntity.ok(taskService.getAllByPerentId(parentId));
+                return ResponseEntity.ok(taskService.getAllByParentId(Long.valueOf(parentId)));
             }
             
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error get all tasks");
-        }
-    }
-    
+            return ResponseEntity.badRequest().body("error get All ");
+        }    
+    }       
+     
     @PostMapping
     public ResponseEntity add(@RequestBody TaskEntity task) {
         try {
