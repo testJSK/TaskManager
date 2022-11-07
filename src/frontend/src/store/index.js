@@ -1,14 +1,13 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
+import createPersonStore from './persons';
+import createTaskStore from './tasks';
 
-export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
+export default ( api ) => createStore({
+
   modules: {
-  }
+    tasks: createTaskStore(api.tasks),
+    persons: createPersonStore(api.persons),
+  },
+
+  strict: process.env.NODE_ENV !== 'production'
 })

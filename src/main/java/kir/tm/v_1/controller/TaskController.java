@@ -41,9 +41,9 @@ public class TaskController {
     public ResponseEntity add(@RequestBody TaskEntity task) {
         try {
             TaskEntity newTask = taskService.add(task);
-            return ResponseEntity.ok("task was added" + newTask.getId());
+            return ResponseEntity.ok("task was added " + newTask.getId());
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("error added new task");
+            return ResponseEntity.badRequest().body("error added new task ");
         }
     }
     

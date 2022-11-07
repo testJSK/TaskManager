@@ -33,7 +33,11 @@ public class PersonService {
     }
     
     public PersonEntity add(PersonEntity person) throws AlreadyExistException {
-        if(personRepo.findByEmail(person.getEmail()) != null ) {
+        String email = person.getEmail();
+        if( email != null & 
+            (personRepo.findByEmail(email) != null) ) {
+            
+            System.out.println("---------=====--------");
             throw new AlreadyExistException(person.getEmail());
         }
         return personRepo.save(person);
@@ -46,5 +50,33 @@ public class PersonService {
             return person;
         }
         throw new NotFoundException("person by id");
+    }
+
+    public PersonEntity update(Long id, PersonEntity updates) throws NotFoundException{
+        
+        Optional<PersonEntity> person = personRepo.findById(id);
+
+        if( person.isPresent() ) {
+
+            PersonEntity _person = person.get();
+            _person.setEmail( updates.getEmail() ); 
+            
+            _person.setFirstNameBase(updates.getFirstNameBase());
+            _person.setFirstNameWho(updates.getFirstNameWho());
+
+            _person.setLastNameBase(updates.getLastNameBase());
+            _person.setLastNameWho(updates.getLastNameWho());
+
+            _person.setJobDepartment(updates.getJobDepartment());
+            _person.setJobPosition(updates.getJobPosition());
+
+            /* 
+            habr post 542818 objectMapper
+             */
+            
+            return personRepo.save(_person);
+
+        }
+        throw new NotFoundException("error update person - not found by id ");
     }
 }
