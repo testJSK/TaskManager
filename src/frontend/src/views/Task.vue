@@ -38,11 +38,11 @@
           <div class="row">
             <div class="col">
               <label for="" class="from-label">Start</label>
-              <input type="date" class="form-control" v-model="taskStart">
+              <input type="date" class="form-control" v-model="task.dateStart">
             </div>
             <div class="col">
               <label for="" class="from-label">End</label>
-              <input type="date" class="form-control" v-model="taskEnd">
+              <input type="date" class="form-control" v-model="task.dateEnd">
             </div>
           </div>
 
@@ -116,7 +116,7 @@
 </template>
 
 <script>
-import {  mapActions, mapGetters } from 'vuex';
+import {  mapActions } from 'vuex';
 
 export default {
   name: 'TaskView',
@@ -126,6 +126,10 @@ export default {
     editmode: false,
     task: {},
     taskTypes: {},
+    
+    // taskStart: null,
+    // taskEnd: null,
+
     workApps: {},
     taskTypesSelected: null,
     workAppsSelected: null,
@@ -142,9 +146,9 @@ export default {
   methods: {
     ...mapActions( 'persons', {addPerson: 'add' , updatePerson: 'update'} ),
     
-    save(person){     
-        console.log(' save = UPDATE ')
-    },
+    // save(person){     
+    //     console.log(' save = UPDATE ')
+    // },
     abrev(str){
       if( str !== null) {        
         return ( 
@@ -185,7 +189,7 @@ console.log(this.task.parentId)
       this.childTasks = childTasks;
     }
 
-    -let taskStatus = await this.$api++++-65451+-5
+    // let taskStatus = await this.$api.statusApi
 
     
   },

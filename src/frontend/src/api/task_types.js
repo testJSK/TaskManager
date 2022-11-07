@@ -9,8 +9,7 @@ export default ( http ) => ({
 		return response.data;
 	},
 
-	async add( task_types ){
-		console.log(task)
+	async add( task_types ){		
 		let response = await http.post( 'tasktypes', JSON.stringify(task_types), {
 			headers: {
 				'Content-Type': 'application/json'

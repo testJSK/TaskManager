@@ -26,14 +26,14 @@ export default ( personApi ) => ({
       const person = await personApi.getOne(id);
       commit( 'getOne', person );      
     },
-    async add({ commit, dispatch }, person ) {
+    async add({ dispatch }, person ) {
       const result = await personApi.add(person)
       console.log(result)
       if(result.includes('added')) {
         dispatch( 'load' );
       }
     },
-    async update( {commit, dispatch }, person) {
+    async update( { dispatch }, person) {
       console.log(person.id)
       const result = await personApi.update(person.id, person);
       console.log(result)

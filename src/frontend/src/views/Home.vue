@@ -183,15 +183,20 @@ export default {
 
     this.tasktypes = await this.$api.taskTypes.all();
 
-    let shortDate = new Intl.DateTimeFormat("en",{
-      dateStyle: "short"
-    });
-let a = new Date()
-let n = a.getFullYear() + '-' +a.getMonth() + '-' +  (
-    (a.getDate() > 9) ? a.getDate() : ("0" + a.getDate())
-  )
+    // let shortDate = new Intl.DateTimeFormat("en",{
+    //   dateStyle: "short"
+    // });
+    
+    let a = new Date()
+
+    let n = a.getFullYear() + '-' +a.getMonth() + '-' +  (
+      (a.getDate() > 9) ? a.getDate() : ("0" + a.getDate())
+    )
+
     this.taskStart = n
+    console.log(this.taskStart)
   }
+  
 }
 </script>
 <style scoped>
