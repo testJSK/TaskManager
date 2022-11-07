@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package kir.tm.v_1.entity;
 
 import java.io.Serializable;
@@ -53,6 +49,12 @@ public class TaskEntity implements Serializable{
     
     @Column(name = "work_app_id")
     private Long workAppId;
+
+    @Column(name = "status_id")
+    private Long statusId;
+
+    @Column(name = "price")
+    private Long price;
 
     public TaskEntity() {
     }
@@ -137,6 +139,22 @@ public class TaskEntity implements Serializable{
 
     public void setWorkAppId(Long workAppId) {
         this.workAppId = workAppId;
+    }
+
+    public Long getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(Long statusId) {
+        this.statusId = statusId;
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
     }
 
     @Override
