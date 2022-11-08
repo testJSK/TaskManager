@@ -61,7 +61,12 @@
 
 
       </div>
-
+<hr>
+  <router-link :to="{ name: 'home'}">
+    <button class="btn btn-danger" @click="closeFormTaskAdd">Close</button> | 
+  </router-link>
+    
+    <button class="btn btn btn-success" @click.prevent="updateTask">Save</button>
       <hr>
       <div class="row">
       <h3> Задачи:</h3>
@@ -90,14 +95,14 @@
       
 
 <hr>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col">
           <button class="btn btn-success" @click.prevent="createZRS">Сформировать ЗРС</button>
         </div>
         <div class="col">
           <button class="btn btn-success">Добавить ТЗ</button>
         </div>
-      </div>
+      </div> -->
 
     <hr>
 <div class="row">
@@ -148,7 +153,11 @@ export default {
   },
   methods: {
     ...mapActions( 'persons', {addPerson: 'add' , updatePerson: 'update'} ),
-    
+    async updateTask(){
+      let result = await this.$api.tasks.update(this.task)
+      console.log(result)
+
+    },
     // save(person){     
     //     console.log(' save = UPDATE ')
     // },
@@ -165,8 +174,19 @@ export default {
     },
     async getTask(id){
       this.childTasks = {};
-      let getTask = await this.$api.tasks.getOne(id);
+      let getTask = await this.$api.tasks.getOne(id);      
       this.task = getTask;  
+      
+      let a = new Date(  this.task.dateStart);
+      
+      let n = a.getFullYear() + '-' +a.getMonth() + '-' +  (
+        (a.getDate() > 9) ? a.getDate() : ("0" + a.getDate())
+      )
+console.log(n)
+      this.task.dateStart = this.task.dateStart.substring(0, 10)
+      console.log(this.task.dateStart)
+
+
     },
   },
   async created(){

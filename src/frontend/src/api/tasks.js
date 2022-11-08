@@ -19,9 +19,9 @@ export default ( http ) => ({
 		return response.data;
 	},
 
-	async update( id, task ){
+	async update( task ){
 		console.log(task)
-		let response = await http.post( `tasks/${id}`, JSON.stringify(task), {
+		let response = await http.post( `tasks/${task.id}`, JSON.stringify(task), {
 			headers: {
 				'Content-Type': 'application/json'
 			}

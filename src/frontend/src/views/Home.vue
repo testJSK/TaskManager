@@ -98,7 +98,7 @@
     </div>
     
     <button class="btn btn-danger" @click.prevent="closeFormTaskAdd">Close</button> | 
-    <div class="btn btn btn-success" @click.prevent="sendTask">Add task</div>
+    <button class="btn btn btn-success" @click.prevent="sendTask">Add task</button>
   </div>
 </template>
 
@@ -194,7 +194,7 @@ export default {
     )
 
     this.taskStart = n
-    console.log(this.taskStart)
+    // console.log(this.taskStart)
   }
   
 }

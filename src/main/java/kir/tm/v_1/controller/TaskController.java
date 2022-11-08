@@ -60,7 +60,7 @@ public class TaskController {
         }
     }    
     
-    @PutMapping("/{id}")
+    @PostMapping("/{id}")
     // @PutMapping("/{id}") cors wtf
     public ResponseEntity update(
             @PathVariable Long id,
