@@ -23,8 +23,8 @@
       <td>{{ task.manageId }}</td>
       <td>
         <router-link :to="{ name: 'tasks', params: { id: task.id } }">        
-          <button class="btn btn-primary" > . . . </button>
-        </router-link>        
+          <button class="btn btn-primary" >. . .</button>
+        </router-link>
       </td>       
     </tr>
   </tbody>

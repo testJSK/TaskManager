@@ -105,6 +105,9 @@
     <ol class="list-group list-group-numbered">
       <li class="list-group-item" v-for="i in childTasks" :key="i.id">
         {{ i.title }}
+        <router-link :to="{ name: 'tasks', params: { id: i.id } }">        
+          <button class="btn btn-primary" @click="getTask(i.id)"> . . . </button>
+        </router-link>
       </li>
     </ol>
   </div>
@@ -160,38 +163,30 @@ export default {
          return "";
       }            
     },
-    createdZRS(){
-      this.ZRS = {
-        
-      }
-    }
+    async getTask(id){
+      this.childTasks = {};
+      let getTask = await this.$api.tasks.getOne(id);
+      this.task = getTask;  
+    },
   },
   async created(){
-    let getTask = await this.$api.tasks.getOne(this.id);
-    this.task = getTask;  
-console.log(this.task.id)
-console.log(this.task)
-console.log(this.task.parentId)
+    this.getTask(this.id)
+    // let getTask = await this.$api.tasks.getOne(this.id);
+    // this.task = getTask;  
 
     let getTaskTypes = await this.$api.taskTypes.all();
     this.taskTypes = getTaskTypes;
     this.taskTypesSelected = this.task.taskTypeId;
-    console.log(this.taskTypes)
 
     let getWorkApps = await this.$api.workApps.all();
-    console.log(getWorkApps)
     this.workApps = getWorkApps;
     this.workAppsSelected = this.task.workAppId;
 
     if(this.task.parentId){
-      let childTasks = await this.$api.tasks.allByParentId( await this.task.parentId)
-      console.log(childTasks)
+      let childTasks = await this.$api.tasks.allByParentId( await this.task.id)
+      console.log('childTasks ' + childTasks)
       this.childTasks = childTasks;
-    }
-
-    // let taskStatus = await this.$api.statusApi
-
-    
+    }    
   },
 
 }
