@@ -9,27 +9,27 @@
           <div class="row">
             <div class="col">
               <label for="" class="form-label">Инициатор</label>
-              <select name="" id="" class="form-select">
-                <option v-for="i in taskTypes" :value="i.id" v-bind:key="i.id">{{ i.title }}</option>
+              <select name="" id="" class="form-select" v-model="task.initiatorId">
+                <option v-for="i in persons" :value="i.id" v-bind:key="i.id">{{ fio( i ) }}</option>
               </select>
             </div>
             <div class="col">
               <label for="" class="form-label">Исполнитель</label>
-              <select name="" id="" class="form-select">
-                <option v-for="i in taskTypes" :value="i.id" v-bind:key="i.id">{{ i.title }}</option>
+              <select name="" id="" class="form-select" v-model="task.managerId">
+                <option v-for="i in persons" :value="i.id" v-bind:key="i.id">{{ fio( i ) }}</option>
               </select>
             </div>
           </div>
           <div class="row">
             <div class="col">
               <label for="" class="form-label">Work App</label>
-              <select name="" id="" class="form-select">
-                <option v-for="i in taskTypes" :value="i.id" v-bind:key="i.id">{{ i.title }}</option>
+              <select name="" id="" class="form-select" v-model="task.workAppId">
+                <option v-for="i in workApps" :value="i.id" v-bind:key="i.id">{{ i.title }}</option>
               </select>
             </div>
             <div class="col">
               <label for="" class="form-label">Task type</label>
-              <select name="" id="" class="form-select">
+              <select name="" id="" class="form-select" v-model="task.taskTypeId">
                 <option v-for="i in taskTypes" :value="i.id" v-bind:key="i.id">{{ i.title }}</option>
               </select>
             </div>
@@ -109,7 +109,7 @@
   <div class="col">
     <ol class="list-group list-group-numbered">
       <li class="list-group-item" v-for="i in childTasks" :key="i.id">
-        {{ i.title }}
+        {{ i.title }} {{ workApps.find( app => (app.id === i.workAppId).title) }}
         <router-link :to="{ name: 'tasks', params: { id: i.id } }">        
           <button class="btn btn-primary" @click="getTask(i.id)"> . . . </button>
         </router-link>
@@ -134,11 +134,11 @@ export default {
     editmode: false,
     task: {},
     taskTypes: {},
+    persons: {},
     
-    // taskStart: null,
-    // taskEnd: null,
-
     workApps: {},
+    initiatorSelected: null,
+    managerSelected: null,
     taskTypesSelected: null,
     workAppsSelected: null,
     ZRS: {},
@@ -158,6 +158,14 @@ export default {
       console.log(result)
 
     },
+    fio( person ){
+      let lastname = person.lastNameBase;
+      let lastnamewho = person.lastNameWho;
+      let firstname = person.firstNameBase;
+      let middlename = person.middleNameBase;
+      let result = lastname + ( (lastnamewho !=null) ? lastnamewho : "" ) + ' ' + firstname.substring(0,1).toUpperCase() + middlename.substring(0,1).toUpperCase();
+      return result;
+    },
     // save(person){     
     //     console.log(' save = UPDATE ')
     // },
@@ -173,6 +181,8 @@ export default {
       }            
     },
     async getTask(id){
+      this.persons = await this.$api.persons.all();
+      console.log(this.persons)
       this.childTasks = {};
       let getTask = await this.$api.tasks.getOne(id);      
       this.task = getTask;  
@@ -184,6 +194,10 @@ export default {
       )
 console.log(n)
       this.task.dateStart = this.task.dateStart.substring(0, 10)
+      if(this.task.dateEnd){
+        this.task.dateEnd = this.task.dateEnd.substring(0, 10)
+      }
+      
       console.log(this.task.dateStart)
 
 

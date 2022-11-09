@@ -135,7 +135,7 @@ export default {
     ...mapActions( 'tasks', {getOne: 'getOne' }),
     async loadTasks(){
       let persons = await this.$api.persons.all();
-      console.log(persons)
+      
       this.persons = persons;
     },
     async sendTask(){
