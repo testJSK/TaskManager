@@ -158,6 +158,9 @@ export default {
       console.log(result)
 
     },
+    closeFormTaskAdd(){
+      this.task = {};
+    },
     fio( person ){
       let lastname = person.lastNameBase;
       let lastnamewho = person.lastNameWho;
@@ -216,11 +219,15 @@ console.log(n)
     this.workApps = getWorkApps;
     this.workAppsSelected = this.task.workAppId;
 
-    if(this.task.parentId){
-      let childTasks = await this.$api.tasks.allByParentId( await this.task.id)
-      console.log('childTasks ' + childTasks)
-      this.childTasks = childTasks;
-    }    
+console.log(this.task.id)
+
+let childTasks = await this.$api.tasks.allByParentId(  this.task.id)      
+      this.childTasks = childTasks;     
+
+    if(this.task.parentId !== undefined){
+      
+    } 
+    
   },
 
 }
