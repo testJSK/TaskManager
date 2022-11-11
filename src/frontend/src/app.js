@@ -5,13 +5,15 @@ import createStorageHelper from '@/utils/token-storage'
 import createHttp from '@/plugins/http'
 import createStore from '@/store';
 import createRouter from '@/router';
+import createDataFormater from '@/utils/data-formater';
 
 export default () => {
                                             // eslint-disable-next-line
     const { http, api } = createHttp();
+    const formatHelper = createDataFormater();
                                             // eslint-disable-next-line
     const storageHelper = createStorageHelper();
-    const store = createStore(api);
+    const store = createStore(api, formatHelper);
     const router = createRouter(store);
 
     store.dispatch('persons/load');

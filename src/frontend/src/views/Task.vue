@@ -73,23 +73,23 @@
       <hr>
         <div class="col">
           <label for="" class="form-label">Заголовок</label>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" v-model="newChildTask.title">
         </div>
         <div class="col">
           <label for="" class="form-label">Тип</label>
-          <select name="" id="" class="form-select">
+          <select name="" id="" class="form-select" v-model="newChildTask.taskTypeId">
             <option v-for="i in taskTypes" :value="i.id" v-bind:key="i.id">{{ i.title }}</option>
           </select>
         </div>
         <div class="col">
           <label for="" class="form-label">Программа</label>
-          <select name="" id="" class="form-select">
+          <select name="" id="" class="form-select" v-model="newChildTask.workAppId">
             <option v-for="i in workApps" :value="i.id" v-bind:key="i.id">{{ i.title }}</option>
           </select>
         </div>        
         <div class="col">
           <label for="" class="form-label">-</label>
-          <button class="btn btn-success">Add</button>
+          <button class="btn btn-success" @click.prevent="addChildTask">Add</button>
         </div>
       </div>
       
@@ -141,15 +141,17 @@ export default {
     managerSelected: null,
     taskTypesSelected: null,
     workAppsSelected: null,
-    ZRS: {},
     childTasks: {},
+    newChildTask: {},
   }),
   computed: {     
     // ...mapGetters( 'tasks',  { task: 'editItem' } ),
     id(){
       return this.$route.params.id;
     },
-
+    // dateForman(date){
+    //   return date.substring(0, 10);
+    // },
   },
   methods: {
     ...mapActions( 'persons', {addPerson: 'add' , updatePerson: 'update'} ),
@@ -157,6 +159,17 @@ export default {
       let result = await this.$api.tasks.update(this.task)
       console.log(result)
 
+    },
+    async addChildTask(){
+      this.newChildTask.dateStart = new Date();
+      this.newChildTask.managerId = this.task.managerId;
+      this.newChildTask.parentId = this.task.id
+      console.log(this.newChildTask)
+
+      let result = await this.$api.tasks.add(this.newChildTask)
+      
+      this.childTasks = await this.$api.tasks.allByParentId(this.task.id);
+      
     },
     closeFormTaskAdd(){
       this.task = {};
@@ -185,7 +198,7 @@ export default {
     },
     async getTask(id){
       this.persons = await this.$api.persons.all();
-      console.log(this.persons)
+      
       this.childTasks = {};
       let getTask = await this.$api.tasks.getOne(id);      
       this.task = getTask;  
@@ -195,21 +208,17 @@ export default {
       let n = a.getFullYear() + '-' +a.getMonth() + '-' +  (
         (a.getDate() > 9) ? a.getDate() : ("0" + a.getDate())
       )
-console.log(n)
+
       this.task.dateStart = this.task.dateStart.substring(0, 10)
       if(this.task.dateEnd){
         this.task.dateEnd = this.task.dateEnd.substring(0, 10)
-      }
-      
-      console.log(this.task.dateStart)
-
-
+      }      
     },
   },
   async created(){
-    this.getTask(this.id)
-    // let getTask = await this.$api.tasks.getOne(this.id);
-    // this.task = getTask;  
+    this.persons = await this.$api.persons.all();
+    this.task = await this.$api.tasks.getOne(this.id)
+    this.childTasks = await this.$api.tasks.allByParentId(this.task.id) 
 
     let getTaskTypes = await this.$api.taskTypes.all();
     this.taskTypes = getTaskTypes;
@@ -221,12 +230,12 @@ console.log(n)
 
 console.log(this.task.id)
 
-let childTasks = await this.$api.tasks.allByParentId(  this.task.id)      
-      this.childTasks = childTasks;     
+// let childTasks = await this.$api.tasks.allByParentId(  this.task.id)      
+//       this.childTasks = childTasks;     
 
-    if(this.task.parentId !== undefined){
+    // if(this.task.parentId !== undefined){
       
-    } 
+    // } 
     
   },
 

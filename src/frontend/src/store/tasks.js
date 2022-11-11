@@ -1,4 +1,4 @@
-export default ( tasksApi ) => ({
+export default ( tasksApi, formatHelper ) => ({
   namespaced: true,  	  
   state: {
     items: null,
@@ -24,7 +24,9 @@ export default ( tasksApi ) => ({
     },
     async getOne( { commit }, id ) {
       console.log('get one task ')
-      const task = await tasksApi.getOne(id)
+      let task = await tasksApi.getOne(id)
+      task.dateStart = formatHelper.shortDate(task.dateStart)
+      console.log(task.dateStart)
       commit( 'getOne', task)
     }
   } 

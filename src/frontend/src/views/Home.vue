@@ -174,25 +174,18 @@ export default {
   },
   async created(){
     this.loadTasks();
-    
-    // let persons = await this.$api.persons.all();
-    // console.log(persons)
-    // this.persons = persons;
 
     this.workapps = await this.$api.workApps.all();
 
     this.tasktypes = await this.$api.taskTypes.all();
 
-    // let shortDate = new Intl.DateTimeFormat("en",{
-    //   dateStyle: "short"
-    // });
-    
     let a = new Date()
 
-    let n = a.getFullYear() + '-' +a.getMonth() + '-' +  (
-      (a.getDate() > 9) ? a.getDate() : ("0" + a.getDate())
-    )
+    let n = a.getFullYear() + '-' +
+     ((a.getMonth() > 9) ? a.getMonth() : ("0" + a.getMonth())) + '-' +
+     ((a.getDate() > 9) ? a.getDate() : ("0" + a.getDate()))
 
+console.log(n)
     this.taskStart = n
     // console.log(this.taskStart)
   }
