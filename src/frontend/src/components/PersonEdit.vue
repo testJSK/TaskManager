@@ -113,16 +113,7 @@ export default {
       jobPosition: ""
     },
   }),
-  // data() {
-  //   return {      
-  //     firstNameBase: "from form 2",
-  //     lastNameBase: "from form 1",
-  //     email: "fromform@maei1d2.ru"      
-  //   }
-  // },
-  computed: {
-
-  },
+  computed: {  },
   methods: {    
     // ...mapActions( 'persons', [ 'add', 'closeedit',  ] ),
     send() {      

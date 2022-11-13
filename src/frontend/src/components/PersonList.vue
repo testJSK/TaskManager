@@ -32,9 +32,7 @@ export default {
   props: {    
     persons: Array
   },
-  computed: {
-
-  },
+  computed: {  },
   methods: {
     // ...mapActions( 'persons', [ 'aditshow' ] ),
   },
