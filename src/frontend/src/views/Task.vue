@@ -1,127 +1,35 @@
 <template>
-  <div class="tasks">
-    <h2>{{ ((task.parentId == null) ? "Запрос" : "Задача") + ' ' + task.id }}</h2>
-    <div class="container">
-      <div class="row">
-          <label for="" class="form-label">Заголовок</label>
-          <input type="text" class="form-control" v-model="task.title">
-        <div class="col">
-          <div class="row">
-            <div class="col">
-              <label for="" class="form-label">Инициатор</label>
-              <select name="" id="" class="form-select" v-model="task.initiatorId">
-                <option v-for="i in persons" :value="i.id" v-bind:key="i.id">{{ fio( i ) }}</option>
-              </select>
-            </div>
-            <div class="col">
-              <label for="" class="form-label">Исполнитель</label>
-              <select name="" id="" class="form-select" v-model="task.managerId">
-                <option v-for="i in persons" :value="i.id" v-bind:key="i.id">{{ fio( i ) }}</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <label for="" class="form-label">Work App</label>
-              <select name="" id="" class="form-select" v-model="task.workAppId">
-                <option v-for="i in workApps" :value="i.id" v-bind:key="i.id">{{ i.title }}</option>
-              </select>
-            </div>
-            <div class="col">
-              <label for="" class="form-label">Task type</label>
-              <select name="" id="" class="form-select" v-model="task.taskTypeId">
-                <option v-for="i in taskTypes" :value="i.id" v-bind:key="i.id">{{ i.title }}</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <label for="" class="from-label">Start</label>
-              <input type="date" class="form-control" v-model="task.dateStart">
-            </div>
-            <div class="col">
-              <label for="" class="from-label">End</label>
-              <input type="date" class="form-control" v-model="task.dateEnd">
-            </div>
-          </div>
-
-        </div>
-        <div class="col">
-          <label for="" class="form-label">Описание</label>          
-          <textarea type="text" class="form-control" v-model="task.description"></textarea>
-        </div>
+  <div class="row tasks">
+    <div class="col">
+      <div class="kbox-title">
+        <router-link to="/task/new" class="btn btn-primary">Add Task</router-link>
       </div>
-
-      <div class="row">       
-        
-        
+      <div class="kbox-content">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Task Title</th>
+            <th>Task Initiator</th>
+            <th>Task Manager</th>
+            <th>Task Date Start</th>
+          </tr>  
+          </thead>
+          <tbody>
+          <tr v-for="(item, ) in tasks" :key="item.id">
+            <td>{{ item.id }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.initiator }}</td>
+            <td>{{ item.manager }}</td>
+            <td>{{ item.dateStart }}</td>
+          </tr>  
+          </tbody>
+        </table>
       </div>
-      <div class="row">
-
-
-      </div>
-<hr>
-  <router-link :to="{ name: 'home'}">
-    <button class="btn btn-danger" @click="closeFormTaskAdd">Close</button> | 
-  </router-link>
-    
-    <button class="btn btn btn-success" @click.prevent="updateTask">Save</button>
-      <hr>
-      <div class="row">
-      <h3> Задачи:</h3>
-      <hr>
-        <div class="col">
-          <label for="" class="form-label">Заголовок</label>
-          <input type="text" class="form-control" v-model="newChildTask.title">
-        </div>
-        <div class="col">
-          <label for="" class="form-label">Тип</label>
-          <select name="" id="" class="form-select" v-model="newChildTask.taskTypeId">
-            <option v-for="i in taskTypes" :value="i.id" v-bind:key="i.id">{{ i.title }}</option>
-          </select>
-        </div>
-        <div class="col">
-          <label for="" class="form-label">Программа</label>
-          <select name="" id="" class="form-select" v-model="newChildTask.workAppId">
-            <option v-for="i in workApps" :value="i.id" v-bind:key="i.id">{{ i.title }}</option>
-          </select>
-        </div>        
-        <div class="col">
-          <label for="" class="form-label">-</label>
-          <button class="btn btn-success" @click.prevent="addChildTask">Add</button>
-        </div>
-      </div>
-      
-
-<hr>
-      <!-- <div class="row">
-        <div class="col">
-          <button class="btn btn-success" @click.prevent="createZRS">Сформировать ЗРС</button>
-        </div>
-        <div class="col">
-          <button class="btn btn-success">Добавить ТЗ</button>
-        </div>
-      </div> -->
-
-    <hr>
-<div class="row">
-  <div class="col">
-    <ol class="list-group list-group-numbered">
-      <li class="list-group-item" v-for="i in childTasks" :key="i.id">
-        {{ i.title }} {{ workApps.find( app => (app.id === i.workAppId).title) }}
-        <router-link :to="{ name: 'tasks', params: { id: i.id } }">        
-          <button class="btn btn-primary" @click="getTask(i.id)">...</button>
-        </router-link>
-      </li>
-    </ol>
-  </div>
-</div>
-
-
     </div>
-  </div>    
+  </div>
 </template>
+
 
 <script>
 import {  mapActions } from 'vuex';
@@ -166,9 +74,9 @@ export default {
       this.newChildTask.parentId = this.task.id
       console.log(this.newChildTask)
 
-      let result = await this.$api.tasks.add(this.newChildTask)
+      // let result = await this.$api.tasks.add(this.newChildTask)
       
-      this.childTasks = await this.$api.tasks.allByParentId(this.task.id);
+      // this.childTasks = await this.$api.tasks.allByParentId(this.task.id);
       
     },
     closeFormTaskAdd(){
@@ -196,44 +104,46 @@ export default {
          return "";
       }            
     },
-    async getTask(id){
-      this.persons = await this.$api.persons.all();
+    // async getTask(id){
+    //   this.persons = await this.$api.persons.all();
       
-      this.childTasks = {};
-      let getTask = await this.$api.tasks.getOne(id);      
-      this.task = getTask;  
+    //   this.childTasks = {};
+    //   // let getTask = await this.$api.tasks.getOne(id);      
+    //   // this.task = getTask;  
       
-      let a = new Date(  this.task.dateStart);
+    //   // let a = new Date(  this.task.dateStart);
       
-      let n = a.getFullYear() + '-' +a.getMonth() + '-' +  (
-        (a.getDate() > 9) ? a.getDate() : ("0" + a.getDate())
-      )
+    //   // let n = a.getFullYear() + '-' +a.getMonth() + '-' +  (
+    //   //   (a.getDate() > 9) ? a.getDate() : ("0" + a.getDate())
+    //   // )
 
-      this.task.dateStart = this.task.dateStart.substring(0, 10)
-      if(this.task.dateEnd){
-        this.task.dateEnd = this.task.dateEnd.substring(0, 10)
-      }      
-    },
+    //   this.task.dateStart = this.task.dateStart.substring(0, 10)
+    //   if(this.task.dateEnd){
+    //     this.task.dateEnd = this.task.dateEnd.substring(0, 10)
+    //   }      
+    // },
   },
   async created(){
-    this.persons = await this.$api.persons.all();
-    this.task = await this.$api.tasks.getOne(this.id)
-    this.childTasks = await this.$api.tasks.allByParentId(this.task.id) 
+    
+    // this.persons = await this.$api.persons.all();
+    // this.task = await this.$api.tasks.getOne(this.id)
+    // // this.childTasks = await this.$api.tasks.allByParentId(this.task.id) 
 
-    let getTaskTypes = await this.$api.taskTypes.all();
-    this.taskTypes = getTaskTypes;
-    this.taskTypesSelected = this.task.taskTypeId;
+    // let getTaskTypes = await this.$api.taskTypes.all();
+    // this.taskTypes = getTaskTypes;
+    // this.taskTypesSelected = this.task.taskTypeId;
 
-    let getWorkApps = await this.$api.workApps.all();
-    this.workApps = getWorkApps;
-    this.workAppsSelected = this.task.workAppId;
+    // let getWorkApps = await this.$api.workApps.all();
+    // this.workApps = getWorkApps;
+    // this.workAppsSelected = this.task.workAppId;
 
-console.log(this.task.id)
+console.log("create() TASK ")
 
     
-  },
-
+  
+  }
 }
+
 </script>
 <style scoped>
   .persons {

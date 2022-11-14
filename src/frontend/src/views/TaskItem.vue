@@ -166,7 +166,7 @@ export default {
       this.newChildTask.parentId = this.task.id
       console.log(this.newChildTask)
 
-      let result = await this.$api.tasks.add(this.newChildTask)
+      // let result = await this.$api.tasks.add(this.newChildTask)
       
       this.childTasks = await this.$api.tasks.allByParentId(this.task.id);
       
@@ -203,11 +203,11 @@ export default {
       let getTask = await this.$api.tasks.getOne(id);      
       this.task = getTask;  
       
-      let a = new Date(  this.task.dateStart);
+      // let a = new Date(  this.task.dateStart);
       
-      let n = a.getFullYear() + '-' +a.getMonth() + '-' +  (
-        (a.getDate() > 9) ? a.getDate() : ("0" + a.getDate())
-      )
+      // let n = a.getFullYear() + '-' +a.getMonth() + '-' +  (
+      //   (a.getDate() > 9) ? a.getDate() : ("0" + a.getDate())
+      // )
 
       this.task.dateStart = this.task.dateStart.substring(0, 10)
       if(this.task.dateEnd){
