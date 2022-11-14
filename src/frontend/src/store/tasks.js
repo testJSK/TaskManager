@@ -1,15 +1,16 @@
 export default ( tasksApi, formatHelper ) => ({
   namespaced: true,  	  
   state: {
-    items: null,
+    items: {},
     editItem: {},
+    newItem: {},
   },
   getters: {
     items: state => state.items,
     editItem: state => state.editItem,
   },
   mutations: {
-    set( state, tasks ) {
+    setItems( state, tasks ) {
       state.items = tasks;
     },
     getOne( state, task ) {
@@ -17,10 +18,10 @@ export default ( tasksApi, formatHelper ) => ({
     }
   },
   actions: {
-    async load( { commit } ) {
+    async getAll( { commit } ) {
       console.log('store')
       const tasks = await tasksApi.all();
-      commit( 'set', tasks );
+      commit( 'setItems', tasks );
     },
     async getOne( { commit }, id ) {
       console.log('get one task ')

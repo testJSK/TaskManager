@@ -17,7 +17,7 @@ export default () => {
     const router = createRouter(store);
 
     store.dispatch('persons/load');
-    store.dispatch('tasks/load');
+    store.dispatch('tasks/getAll');
 
     const app = createApp(App).use(store).use(router);
     app.config.globalProperties['$api'] = api;

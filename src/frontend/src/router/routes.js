@@ -4,6 +4,7 @@ import PersonsView from '@/views/Persons.vue'
 import PositionsView from '@/views/Positions.vue'
 import DepartmentsView from '@/views/Departments.vue'
 import TaskView from '@/views/Task.vue'
+import TaskItemView from '@/views/TaskItem.vue'
 import ZRSView from '@/views/ZRS.vue'
 
 export default function() {
@@ -15,9 +16,14 @@ export default function() {
       component: HomeView
     },
     {
-      path: '/tasks/:id',
-      name: 'tasks',
+      path: '/task',
+      name: 'task',
       component: TaskView
+    },
+    {
+      path: '/task/:id',
+      name: 'taskitem',
+      component: TaskItemView
     },
     {
       path: '/zrs',

@@ -230,6 +230,12 @@ export default {
 
 console.log(this.task.id)
 
+// let childTasks = await this.$api.tasks.allByParentId(  this.task.id)      
+//       this.childTasks = childTasks;     
+
+    // if(this.task.parentId !== undefined){
+      
+    // } 
     
   },
 
