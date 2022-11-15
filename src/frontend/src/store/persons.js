@@ -10,7 +10,7 @@ export default ( personApi ) => ({
     editPerson: state => state.editPerson,
   },
   mutations: {
-    load( state, persons ) {
+    getAll( state, persons ) {
       state.items = persons;
     },
     getOne( state, person ) {
@@ -18,9 +18,10 @@ export default ( personApi ) => ({
     },
   }, 
   actions: {
-    async load( { commit } ) {
+    async getAll( { commit } ) {
       const persons = await personApi.all();
-      commit( 'load', persons );
+      commit( 'getAll', persons );
+      console.log('getAll persons ')
     },
     async getOne( { commit }, id ) {
       const person = await personApi.getOne(id);
@@ -37,6 +38,7 @@ export default ( personApi ) => ({
       console.log(person.id)
       const result = await personApi.update(person.id, person);
       console.log(result)
+
       // if(result.includes('update'))
       dispatch( 'load' );
     }

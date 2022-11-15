@@ -5,7 +5,7 @@ import PositionsView from '@/views/Positions.vue'
 import DepartmentsView from '@/views/Departments.vue'
 import TaskView from '@/views/Task.vue'
 import TaskItemView from '@/views/TaskItem.vue'
-import ZRSView from '@/views/ZRS.vue'
+import E404View from '@/components/E404.vue'
 
 export default function() {
   
@@ -24,11 +24,6 @@ export default function() {
       path: '/task/:id',
       name: 'taskitem',
       component: TaskItemView
-    },
-    {
-      path: '/zrs',
-      name: 'zrs',
-      component: ZRSView
     },
     {
       path: '/about',
@@ -58,7 +53,12 @@ export default function() {
           component: PositionsView
         },
       ]
-    },    
+    }, 
+    {
+      path: '/:any(.*)',
+      component: E404View,
+      
+    }, 
   ];
   
   return routes;

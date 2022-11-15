@@ -16,7 +16,7 @@ export default () => {
     const store = createStore(api, formatHelper);
     const router = createRouter(store);
 
-    store.dispatch('persons/load');
+    store.dispatch('persons/getAll');
     store.dispatch('tasks/getAll');
 
     const app = createApp(App).use(store).use(router);

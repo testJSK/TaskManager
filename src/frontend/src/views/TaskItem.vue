@@ -127,7 +127,7 @@
 import {  mapActions } from 'vuex';
 
 export default {
-  name: 'TaskView',
+  name: 'TaskItemView',
   components: { },
   data: () => ({    
     isShowForm: false,

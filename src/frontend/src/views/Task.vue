@@ -32,34 +32,18 @@
 
 
 <script>
-import {  mapActions } from 'vuex';
+import {  mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'TaskView',
   components: { },
   data: () => ({    
-    isShowForm: false,
-    editmode: false,
-    task: {},
-    taskTypes: {},
-    persons: {},
-    
-    workApps: {},
-    initiatorSelected: null,
-    managerSelected: null,
-    taskTypesSelected: null,
-    workAppsSelected: null,
-    childTasks: {},
-    newChildTask: {},
   }),
   computed: {     
-    // ...mapGetters( 'tasks',  { task: 'editItem' } ),
+    ...mapGetters( 'tasks',  { tasks: 'items', details: 'detailed' } ),
     id(){
       return this.$route.params.id;
     },
-    // dateForman(date){
-    //   return date.substring(0, 10);
-    // },
   },
   methods: {
     ...mapActions( 'persons', {addPerson: 'add' , updatePerson: 'update'} ),
@@ -68,42 +52,66 @@ export default {
       console.log(result)
 
     },
-    async addChildTask(){
-      this.newChildTask.dateStart = new Date();
-      this.newChildTask.managerId = this.task.managerId;
-      this.newChildTask.parentId = this.task.id
-      console.log(this.newChildTask)
+   
+  },
+  async created(){
+    
+    console.log(this.details)
+ 
 
-      // let result = await this.$api.tasks.add(this.newChildTask)
+console.log("create() TASK ")
+
+    
+  
+  }
+}
+   // this.persons = await this.$api.persons.all();
+    // this.task = await this.$api.tasks.getOne(this.id)
+    // // this.childTasks = await this.$api.tasks.allByParentId(this.task.id) 
+
+    // let getTaskTypes = await this.$api.taskTypes.all();
+    // this.taskTypes = getTaskTypes;
+    // this.taskTypesSelected = this.task.taskTypeId;
+
+    // let getWorkApps = await this.$api.workApps.all();
+    // this.workApps = getWorkApps;
+    // this.workAppsSelected = this.task.workAppId;
+ // async addChildTask(){
+    //   this.newChildTask.dateStart = new Date();
+    //   this.newChildTask.managerId = this.task.managerId;
+    //   this.newChildTask.parentId = this.task.id
+    //   console.log(this.newChildTask)
+
+    //   // let result = await this.$api.tasks.add(this.newChildTask)
       
-      // this.childTasks = await this.$api.tasks.allByParentId(this.task.id);
+    //   // this.childTasks = await this.$api.tasks.allByParentId(this.task.id);
       
-    },
-    closeFormTaskAdd(){
-      this.task = {};
-    },
-    fio( person ){
-      let lastname = person.lastNameBase;
-      let lastnamewho = person.lastNameWho;
-      let firstname = person.firstNameBase;
-      let middlename = person.middleNameBase;
-      let result = lastname + ( (lastnamewho !=null) ? lastnamewho : "" ) + ' ' + firstname.substring(0,1).toUpperCase() + middlename.substring(0,1).toUpperCase();
-      return result;
-    },
+    // },
+    // closeFormTaskAdd(){
+    //   this.task = {};
+    // },
+    // fio( person ){
+    //   let lastname = person.lastNameBase;
+    //   let lastnamewho = person.lastNameWho;
+    //   let firstname = person.firstNameBase;
+    //   let middlename = person.middleNameBase;
+    //   let result = lastname + ( (lastnamewho !=null) ? lastnamewho : "" ) + ' ' + firstname.substring(0,1).toUpperCase() + middlename.substring(0,1).toUpperCase();
+    //   return result;
+    // },
     // save(person){     
     //     console.log(' save = UPDATE ')
     // },
-    abrev(str){
-      if( str !== null) {        
-        return ( 
-          str.trim().split(' ').map( word => { 
-              return ( word.length > 1 ) ? word[0].toUpperCase(): word[0].toLowerCase() 
-            }).join('')
-        ) 
-      } else {
-         return "";
-      }            
-    },
+    // abrev(str){
+    //   if( str !== null) {        
+    //     return ( 
+    //       str.trim().split(' ').map( word => { 
+    //           return ( word.length > 1 ) ? word[0].toUpperCase(): word[0].toLowerCase() 
+    //         }).join('')
+    //     ) 
+    //   } else {
+    //      return "";
+    //   }            
+    // },
     // async getTask(id){
     //   this.persons = await this.$api.persons.all();
       
@@ -122,28 +130,6 @@ export default {
     //     this.task.dateEnd = this.task.dateEnd.substring(0, 10)
     //   }      
     // },
-  },
-  async created(){
-    
-    // this.persons = await this.$api.persons.all();
-    // this.task = await this.$api.tasks.getOne(this.id)
-    // // this.childTasks = await this.$api.tasks.allByParentId(this.task.id) 
-
-    // let getTaskTypes = await this.$api.taskTypes.all();
-    // this.taskTypes = getTaskTypes;
-    // this.taskTypesSelected = this.task.taskTypeId;
-
-    // let getWorkApps = await this.$api.workApps.all();
-    // this.workApps = getWorkApps;
-    // this.workAppsSelected = this.task.workAppId;
-
-console.log("create() TASK ")
-
-    
-  
-  }
-}
-
 </script>
 <style scoped>
   .persons {

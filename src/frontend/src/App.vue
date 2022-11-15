@@ -45,6 +45,7 @@
 }
 .info-panel {
   background-color:ghostwhite;
+  font-size: 0.9rem;
   min-height: 150%;
 }
 .menu-panel a {
