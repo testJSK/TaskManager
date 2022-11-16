@@ -41,7 +41,12 @@ export default {
   data: () => ({    
   }),
   computed: {     
-    ...mapGetters( 'tasks',  { tasks: 'items', detailed: 'detailed' } ),
+    ...mapGetters( 'tasks',
+      {
+       tasks: 'items',
+       detailed: 'detailed',
+       tasksList: 'tasksList'
+      } ),
     id(){
       return this.$route.params.id;
     },
@@ -54,6 +59,7 @@ export default {
     },
     async test(){
 console.log( this.detailed)
+console.log(this.tasksList)
 // console.log( this.tasks)
     },
    

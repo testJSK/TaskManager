@@ -11,15 +11,31 @@ export default ( tasksApi, formatHelper ) => ({
     items: state => state.items,
     editItem: state => state.editItem,    // eslint-disable-next-line
     detailed: (state, getters, rootState, rootGetters) => {       
+
+      let persons = rootGetters['persons/items']
+
       return  state.items.map(  task => {
-        let initiators = rootGetters['persons/items']
-        let initiator = initiators.find( i => i.id == 44)
-        console.log(initiator.firstNameBase)
-        return  {...task, ...initiator}
-      })       
+        let initiator = persons.find( person => person.id == task.initiatorId)
+        let manager = persons.find( person => person.id == task.managerId)        
+        return  { ...task, initiator: { ...initiator }, manager: { ...manager } }
+      })               
+    },
+    tasksList: (state, getters, rootState, rootGetters) => {
+      let persons = rootGetters['persons/items'];
+
+      return state.items.map( task => {
+        console.log(task)
+                
+        let initiator = persons.find( person => person.id == task.initiatorId);
+          
         
-    }
-      // return rootGetters['persons/items'].map(i => i.id)       
+        
+        console.log(initiator)
+
+
+        return {...initiator}
+      });
+    },
   },
 
   mutations: {
