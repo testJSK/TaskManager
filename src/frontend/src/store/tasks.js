@@ -2,7 +2,7 @@ export default ( tasksApi, formatHelper ) => ({
   namespaced: true,  	  
   state: {
     items: {},
-    itemsDetail: {},
+    itemsDetailed: {},
     editItem: {},
     newItem: {},
   },
@@ -27,7 +27,7 @@ export default ( tasksApi, formatHelper ) => ({
         let initiator;
         let manager;
         if(task.initiatorId){
-          initiator = persons.find( person => person.id == task.initiatorId);
+           initiator = persons.find( person => person.id == task.initiatorId);
         }
         if(task.managerId){
           manager = persons.find( person => person.id == task.managerId)
@@ -44,11 +44,14 @@ export default ( tasksApi, formatHelper ) => ({
     },
     getOne( state, task ) {
       state.editItem = task
+    },
+    getItemsDetailed( state, itemsDetailed ) {
+      state.itemsDetailed = itemsDetailed
     }
   },
 
   actions: {
-    async getAll( { commit } ) {
+    async getAll( { commit, getters } ) {
       // console.log('store')
       const tasks = await tasksApi.all();
       commit( 'getAll', tasks );
@@ -60,6 +63,11 @@ export default ( tasksApi, formatHelper ) => ({
       // console.log(task.dateStart)
       commit( 'getOne', task)
       console.log(getters.itemsDetail)
+    },
+    async getItemsDetailed ( {commit, getters} ) {
+      const tasks = await getters.tasksDetailed;
+      console.log(tasks)
+      commit( 'getItemsDetailed', tasks )
     }
   } 
 })

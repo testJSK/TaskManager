@@ -16,8 +16,8 @@
             <th>Task Date Start</th>
           </tr>  
           </thead>
-          <tbody>
-          <tr v-for="(item, ) in task" :key="item.id">
+          <tbody v-show="tasks">
+          <tr v-for="(item, ) in tasks" :key="item.id">
             <td>{{ item.id }}</td>
             <!-- <td>{{ item.title }}</td>
             <td>{{ item.initiator }}</td>
@@ -39,9 +39,10 @@ export default {
   name: 'TaskView',
   components: { },
   data: () => ({    
+    tasks: null,
   }),
   computed: {     
-    ...mapGetters( 'tasks', { tasks: 'tasksDetailed' } ),
+    ...mapGetters( 'tasks', { getTasksDetailed: 'tasksDetailed' } ),
     id(){
       return this.$route.params.id;
     },
@@ -53,20 +54,15 @@ export default {
       console.log(result)
     },
     async test(){
-// console.log( this.detailed)
-console.log(this.tasks)
-// console.log( this.tasks)
+console.log(this.getTasksDetailed)
+this.tasks = await this.getTasksDetailed
     },
    
   },
   async created(){
-    
-    
- 
-
-// console.log("create() TASK ")
-
-    
+    this.tasks = await this.getTasksDetailed
+    this.tasks = await this.getTasksDetailed;
+console.log("create() TASK ")    
   
   }
 }
