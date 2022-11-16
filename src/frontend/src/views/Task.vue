@@ -2,6 +2,7 @@
   <div class="row tasks">
     <div class="col">
       <div class="kbox-title">
+        <button class="btn btn-primary" @click.prevent="test">TEST</button>
         <router-link to="/task/new" class="btn btn-primary">Add Task</router-link>
       </div>
       <div class="kbox-content">
@@ -40,7 +41,7 @@ export default {
   data: () => ({    
   }),
   computed: {     
-    ...mapGetters( 'tasks',  { tasks: 'items', details: 'detailed' } ),
+    ...mapGetters( 'tasks',  { tasks: 'items', detailed: 'detailed' } ),
     id(){
       return this.$route.params.id;
     },
@@ -50,16 +51,19 @@ export default {
     async updateTask(){
       let result = await this.$api.tasks.update(this.task)
       console.log(result)
-
+    },
+    async test(){
+console.log( this.detailed)
+// console.log( this.tasks)
     },
    
   },
   async created(){
     
-    console.log(this.details)
+    
  
 
-console.log("create() TASK ")
+// console.log("create() TASK ")
 
     
   
