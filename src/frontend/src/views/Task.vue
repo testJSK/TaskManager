@@ -17,12 +17,12 @@
           </tr>  
           </thead>
           <tbody>
-          <tr v-for="(item, ) in tasks" :key="item.id">
+          <tr v-for="(item, ) in task" :key="item.id">
             <td>{{ item.id }}</td>
-            <td>{{ item.title }}</td>
+            <!-- <td>{{ item.title }}</td>
             <td>{{ item.initiator }}</td>
             <td>{{ item.manager }}</td>
-            <td>{{ item.dateStart }}</td>
+            <td>{{ item.dateStart }}</td> -->
           </tr>  
           </tbody>
         </table>
@@ -41,12 +41,7 @@ export default {
   data: () => ({    
   }),
   computed: {     
-    ...mapGetters( 'tasks',
-      {
-       tasks: 'items',
-       detailed: 'detailed',
-       tasksList: 'tasksList'
-      } ),
+    ...mapGetters( 'tasks', { tasks: 'tasksDetailed' } ),
     id(){
       return this.$route.params.id;
     },
@@ -58,8 +53,8 @@ export default {
       console.log(result)
     },
     async test(){
-console.log( this.detailed)
-console.log(this.tasksList)
+// console.log( this.detailed)
+console.log(this.tasks)
 // console.log( this.tasks)
     },
    

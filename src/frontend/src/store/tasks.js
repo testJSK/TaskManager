@@ -20,20 +20,20 @@ export default ( tasksApi, formatHelper ) => ({
         return  { ...task, initiator: { ...initiator }, manager: { ...manager } }
       })               
     },
-    tasksList: (state, getters, rootState, rootGetters) => {
+    tasksDetailed: (state, getters, rootState, rootGetters) => {
       let persons = rootGetters['persons/items'];
-
+      
       return state.items.map( task => {
-        console.log(task)
-                
-        let initiator = persons.find( person => person.id == task.initiatorId);
-          
-        
-        
-        console.log(initiator)
+        let initiator;
+        let manager;
+        if(task.initiatorId){
+          initiator = persons.find( person => person.id == task.initiatorId);
+        }
+        if(task.managerId){
+          manager = persons.find( person => person.id == task.managerId)
+        }
 
-
-        return {...initiator}
+        return { ...task, ...initiator, ...manager };
       });
     },
   },
