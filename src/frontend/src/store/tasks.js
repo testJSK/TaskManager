@@ -22,7 +22,9 @@ export default ( tasksApi, formatHelper ) => ({
     },
     tasksDetailed: (state, getters, rootState, rootGetters) => {
       let persons = rootGetters['persons/items'];
-      
+      if(persons.length == 0){
+        return {}
+      }
       return state.items.map( task => {
         let initiator;
         let manager;

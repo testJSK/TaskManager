@@ -16,7 +16,7 @@
             <th>Task Date Start</th>
           </tr>  
           </thead>
-          <tbody v-show="tasks">
+          <tbody v-if="tasks">
           <tr v-for="(item, ) in tasks" :key="item.id">
             <td>{{ item.id }}</td>
             <!-- <td>{{ item.title }}</td>
@@ -54,17 +54,24 @@ export default {
       console.log(result)
     },
     async test(){
-console.log(this.getTasksDetailed)
-this.tasks = await this.getTasksDetailed
+      console.log(this.getTasksDetailed)
+      this.tasks = await this.getTasksDetailed
     },
    
   },
   async created(){
-    this.tasks = await this.getTasksDetailed
-    this.tasks = await this.getTasksDetailed;
-console.log("create() TASK ")    
+    console.log(this.tasks)
+    if(!this.tasks){
+       this.tasks = await this.getTasksDetailed
+       await console.log(this.tasks)
+    console.log("create() TASK ")    
+       
+    }
+
+    
+    
   
-  }
+  },
 }
    // this.persons = await this.$api.persons.all();
     // this.task = await this.$api.tasks.getOne(this.id)
