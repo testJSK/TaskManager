@@ -16,9 +16,12 @@ export default () => {
     const store = createStore(api, formatHelper);
     const router = createRouter(store);
 
-    store.dispatch('persons/getAll');
-    store.dispatch('tasks/getAll');    
-    store.dispatch('tasks/getItemsDetailed');
+    store.dispatch('tasks/getAll').then( () => {
+        store.dispatch('persons/getAll');
+        // store.dispatch('workapps/getAll');
+    });
+    
+    
 
     const app = createApp(App).use(store).use(router);
     app.config.globalProperties['$api'] = api;

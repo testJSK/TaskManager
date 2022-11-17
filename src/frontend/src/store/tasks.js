@@ -29,13 +29,13 @@ export default ( tasksApi, formatHelper ) => ({
         let initiator;
         let manager;
         if(task.initiatorId){
-           initiator = persons.find( person => person.id == task.initiatorId);
+          initiator = persons.find( person => person.id == task.initiatorId);  
         }
         if(task.managerId){
           manager = persons.find( person => person.id == task.managerId)
         }
 
-        return { ...task, ...initiator, ...manager };
+        return { initiator: { ...initiator }, manager: { ...manager }, ...task };
       });
     },
   },
@@ -53,7 +53,7 @@ export default ( tasksApi, formatHelper ) => ({
   },
 
   actions: {
-    async getAll( { commit, getters } ) {
+    async getAll( { commit } ) {
       // console.log('store')
       const tasks = await tasksApi.all();
       commit( 'getAll', tasks );
@@ -66,10 +66,5 @@ export default ( tasksApi, formatHelper ) => ({
       commit( 'getOne', task)
       console.log(getters.itemsDetail)
     },
-    async getItemsDetailed ( {commit, getters} ) {
-      const tasks = await getters.tasksDetailed;
-      console.log(tasks)
-      commit( 'getItemsDetailed', tasks )
-    }
   } 
 })
