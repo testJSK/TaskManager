@@ -16,12 +16,14 @@
             <th>Task Date Start</th>
           </tr>  
           </thead>
-          <tbody v-if="tasks">
-          <tr v-for="(item, ) in tasks" :key="item.id">
+          <tbody v-if="shortName(tasks)">
+          <tr v-for="(item, ) in hasTask" :key="item.id">
             <td>{{ item.id }}</td>
             <td>{{ item.title }}</td>
-            <td>{{ shortName(item?.initiator) }}</td>
-            <td>{{ item?.manager.lastNameBase }}</td>
+            <td>{{ item?.initiator.lastNameBase+ item?.initiator.lastNameWho + ' '+
+              (item?.initiator.firstNameBase)?.substring(0,1) + '.' +
+              (item?.initiator.middleNameBase)?.substring(0,1) + '.' }}</td>
+            <td>{{ shortName(item?.manager) }}</td>
             <td>{{ item.dateStart }}</td>
           </tr>  
           </tbody>
@@ -39,7 +41,7 @@ export default {
   name: 'TaskView',
   components: { },
   data: () => ({    
-    // hasTasks: null,
+    hasTask: null,
   }),
   computed: {     
     ...mapGetters( 'tasks', { tasks: 'tasksDetailed' } ),
@@ -50,49 +52,34 @@ export default {
       console.log(this.tasks === !null)
       return !(this.tasks === null)
     },
-//     shortName(person){
-//       if(!!person) 
-//       {
-//         console.log("nulll")
-//         return "NULL"
-//       }
-//       let base =  (person.lastNameBase === null) ? "" : person.lastNameBase;
-//       let end = (person.lastNameWho === null) ? "" : person.lastNameWho;
-//       let first = (person.firstNameBase === null) ? "" : person.firstNameBase.substring(0,1).toUpperCase();
-//       let middle = (person.middleNameBase === null) ? "" : person.middleNameBase.substring(0,1).toUpperCase();
-// console.log(base)
-//       return 1 //`${base}${end}.${first}.${middle}`;
-    
-//     },
   },
   methods: {
     ...mapActions( 'persons', {addPerson: 'add' , updatePerson: 'update'} ),
-    shortName(person){
-      if(!!person) 
-      {
-        console.log("nulll")
-        return "NULL"
-      }
+ shortName(person){
+
       let base =  (person.lastNameBase === null) ? "" : person.lastNameBase;
       let end = (person.lastNameWho === null) ? "" : person.lastNameWho;
       let first = (person.firstNameBase === null) ? "" : person.firstNameBase.substring(0,1).toUpperCase();
       let middle = (person.middleNameBase === null) ? "" : person.middleNameBase.substring(0,1).toUpperCase();
 console.log(base)
       return 1 //`${base}${end}.${first}.${middle}`;
-
     },
+  },
+  async renderTracked(){
+console.log('actrenderTrackedivated')
+  },
+  
+  async activated(){
+console.log('activated')
+  
+  },
+  async renderTriggered(){
+console.log('renderTriggered')
 
-    // async updateTask(){
-    //   let result = await this.$api.tasks.update(this.task)
-    //   console.log(result)
-    // },
-    // async test(){
-    //   console.log(this.tasks)
-    // },
-   
+this.hasTask = this.tasks
   },
   async created(){
-   
+   this.hasTask = this.tasks
     console.log("create() TASK ")    
        
     },
