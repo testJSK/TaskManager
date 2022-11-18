@@ -16,15 +16,14 @@
             <th>Task Date Start</th>
           </tr>  
           </thead>
-          <tbody v-if="shortName(tasks)">
-          <tr v-for="(item, ) in hasTask" :key="item.id">
-            <td>{{ item.id }}</td>
+          <tbody v-if="tasks">            
+          <tr v-for="(item, ) in tasks" :key="item.id">
+            <row-table :task="item"></row-table>
+            <!-- <td>{{ item.id }}</td>
             <td>{{ item.title }}</td>
-            <td>{{ item?.initiator.lastNameBase+ item?.initiator.lastNameWho + ' '+
-              (item?.initiator.firstNameBase)?.substring(0,1) + '.' +
-              (item?.initiator.middleNameBase)?.substring(0,1) + '.' }}</td>
+            <td>{{ item?.initiator.lastNameBase }}</td>
             <td>{{ shortName(item?.manager) }}</td>
-            <td>{{ item.dateStart }}</td>
+            <td>{{ item.dateStart }}</td> -->
           </tr>  
           </tbody>
         </table>
@@ -36,34 +35,22 @@
 
 <script>
 import {  mapGetters, mapActions } from 'vuex';
+import RowTable from '@/components/tasks/RowTable.vue'
 
 export default {
   name: 'TaskView',
-  components: { },
+  components: { RowTable },
   data: () => ({    
-    hasTask: null,
   }),
   computed: {     
     ...mapGetters( 'tasks', { tasks: 'tasksDetailed' } ),
     id(){
       return this.$route.params.id;
     },
-    hasTasks(){
-      console.log(this.tasks === !null)
-      return !(this.tasks === null)
-    },
+
   },
   methods: {
     ...mapActions( 'persons', {addPerson: 'add' , updatePerson: 'update'} ),
- shortName(person){
-
-      let base =  (person.lastNameBase === null) ? "" : person.lastNameBase;
-      let end = (person.lastNameWho === null) ? "" : person.lastNameWho;
-      let first = (person.firstNameBase === null) ? "" : person.firstNameBase.substring(0,1).toUpperCase();
-      let middle = (person.middleNameBase === null) ? "" : person.middleNameBase.substring(0,1).toUpperCase();
-console.log(base)
-      return 1 //`${base}${end}.${first}.${middle}`;
-    },
   },
   async renderTracked(){
 console.log('actrenderTrackedivated')
@@ -76,10 +63,10 @@ console.log('activated')
   async renderTriggered(){
 console.log('renderTriggered')
 
-this.hasTask = this.tasks
+// this.hasTask = this.tasks
   },
   async created(){
-   this.hasTask = this.tasks
+  //  this.hasTask = this.tasks
     console.log("create() TASK ")    
        
     },
