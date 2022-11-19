@@ -1,11 +1,8 @@
 <template>
-  <div class="row tasks">
+  <div class="row g-0 tasks">
     <div class="col">
-				
 			<div v-if="tasks">
-				<app-table :inputDate="tasks"></app-table>
-				
-				<!-- {{ tasks }} -->
+				<app-table :inputDate="tasks"></app-table>				
 			</div>
     </div>
   </div>
