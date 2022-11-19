@@ -10,15 +10,15 @@
           <thead>
           <tr>
             <th>ID</th>
-            <th>Task Title</th>
-            <th>Task Initiator</th>
-            <th>Task Manager</th>
-            <th>Task Date Start</th>
+            <th>Title</th>
+            <th>Initiator</th>
+            <th>Manager</th>
+            <th>Start</th>
           </tr>  
           </thead>
           <tbody v-if="tasks">            
           <tr v-for="(item, ) in tasks" :key="item.id">
-            <row-table :task="item"></row-table>
+            <task-table-row :task="item"></task-table-row>
             <!-- <td>{{ item.id }}</td>
             <td>{{ item.title }}</td>
             <td>{{ item?.initiator.lastNameBase }}</td>
@@ -35,11 +35,11 @@
 
 <script>
 import {  mapGetters, mapActions } from 'vuex';
-import RowTable from '@/components/tasks/RowTable.vue'
+import TaskTableRow from '@/components/tasks/TableRow.vue'
 
 export default {
   name: 'TaskView',
-  components: { RowTable },
+  components: { TaskTableRow },
   data: () => ({    
   }),
   computed: {     
