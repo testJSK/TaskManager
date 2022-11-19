@@ -1,70 +1,45 @@
 <template>
   <div class="row tasks">
     <div class="col">
-      <div class="kbox-title">
-        <button class="btn btn-primary" @click.prevent="test">TEST</button>
-        <router-link to="/task/new" class="btn btn-primary">Add Task</router-link>
-      </div>
-      <div class="kbox-content">
-        <table class="table">
-          <thead>
-          <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Initiator</th>
-            <th>Manager</th>
-            <th>Start</th>
-          </tr>  
-          </thead>
-          <tbody v-if="tasks">            
-          <tr v-for="(item, ) in tasks" :key="item.id">
-            <task-table-row :task="item"></task-table-row>
-          </tr>  
-          </tbody>
-        </table>
-      </div>
+				
+			<div v-if="tasks">
+				<app-table :inputDate="tasks"></app-table>
+				
+				<!-- {{ tasks }} -->
+			</div>
     </div>
   </div>
 </template>
 
-
 <script>
 import {  mapGetters, mapActions } from 'vuex';
-import TaskTableRow from '@/components/tasks/TableRow.vue'
+import AppTable from '@/components/table/Table.vue'
 
 export default {
   name: 'TaskView',
-  components: { TaskTableRow },
-  data: () => ({    
-  }),
+  components: {  AppTable },
+  data: () => ({ }),
   computed: {     
     ...mapGetters( 'tasks', { tasks: 'tasksDetailed' } ),
     id(){
       return this.$route.params.id;
     },
-
   },
   methods: {
     ...mapActions( 'persons', {addPerson: 'add' , updatePerson: 'update'} ),
   },
   async renderTracked(){
-console.log('actrenderTrackedivated')
-  },
-  
+		console.log('actrenderTrackedivated')
+  },  
   async activated(){
-console.log('activated')
-  
+		console.log('activated')
   },
   async renderTriggered(){
-console.log('renderTriggered')
-
-// this.hasTask = this.tasks
+		console.log('renderTriggered')
   },
   async created(){
-  //  this.hasTask = this.tasks
     console.log("create() TASK ")    
-       
-    },
+	},
 }
    // this.persons = await this.$api.persons.all();
     // this.task = await this.$api.tasks.getOne(this.id)
