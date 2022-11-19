@@ -19,11 +19,6 @@
           <tbody v-if="tasks">            
           <tr v-for="(item, ) in tasks" :key="item.id">
             <task-table-row :task="item"></task-table-row>
-            <!-- <td>{{ item.id }}</td>
-            <td>{{ item.title }}</td>
-            <td>{{ item?.initiator.lastNameBase }}</td>
-            <td>{{ shortName(item?.manager) }}</td>
-            <td>{{ item.dateStart }}</td> -->
           </tr>  
           </tbody>
         </table>

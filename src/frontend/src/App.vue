@@ -25,10 +25,34 @@
       </nav>        
     </div>
     <div class="col-9  g-0 info-panel">
-      <router-view/>      
+			<div class="row">
+        <app-header></app-header></div>
+    
+			<div class="row">
+        <app-breadcrumb :pageName="curentPage"></app-breadcrumb></div>        
+			<div class="row">
+        <router-view/></div> 
     </div>
   </div>
 </template>
+
+<script>
+import AppHeader from '@/components/header/Header.vue'
+import AppBreadcrumb from '@/components/header/Breadcrumb.vue'
+
+export default{
+	// name: 'App',
+  components: { AppHeader, AppBreadcrumb },
+	// props: { userStatus: String },
+  data:() =>({
+    curentPage : "Tasks",
+  }),
+	computed: { },
+	methods: { },
+  
+}
+</script>
+	name: App
 
 <style>
 #app {
@@ -38,13 +62,19 @@
   text-align: center;
   color: #2c3e50;
 }
+.icon {  
+  height: 1.1rem;
+}
+.icon-m {  
+  height: 0.8rem;
+}
 .menu-panel {
   font-weight: bold;
   font-size: 1.1rem;
   background-color:#2c3e50;
 }
 .info-panel {
-  background-color:ghostwhite;
+  background-color:rgb(232, 232, 243);
   font-size: 0.9rem;
   min-height: 150%;
 }
