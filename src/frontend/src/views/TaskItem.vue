@@ -1,8 +1,9 @@
 <template>
-		<app-main-form></app-main-form>
+		<app-main-form
+			:persons="persons"
+		></app-main-form>
 		<app-add-child-form></app-add-child-form>
 		<app-child-list-form></app-child-list-form>
-
 	<!-- <div class="row g-0"> -->
 		<!-- <h2>{{ itemTitle }}</h2>
 		<div class="col-1"></div>
@@ -70,7 +71,6 @@
 				</router-link>
 				</div>
 			</div> -->
-<!-- 		 -->
 <!-- <div v-if="mode.edit">
 			<h3>Добавить Задачу</h3>
 <hr>
@@ -97,12 +97,6 @@
 			</div>
 			</div>
 			</div> -->
-
-
-		
-<!-- <div v-if="mode.edit"> -->
-<!-- 		 -->
-
 <!-- <div>
    <h3> Задачи:</h3>
 		<div class="row g-0 align-items-end my-3">
@@ -133,14 +127,11 @@ export default {
 	isShowForm: false,
   editmode: false,
   task: {},
-  taskTypes: {},
   persons: {},
-  
   workApps: {},
-  initiatorSelected: null,
-  managerSelected: null,
-  taskTypesSelected: null,
-  workAppsSelected: null,
+  taskTypes: {},
+  
+
   childTasks: {},
   newChildTask: {},
  }),
@@ -172,17 +163,7 @@ export default {
    console.log(result)
 
   },
-  async addChildTask(){
-   this.newChildTask.dateStart = new Date();
-   this.newChildTask.managerId = this.task.managerId;
-   this.newChildTask.parentId = this.task.id
-   console.log(this.newChildTask)
 
-   // let result = await this.$api.tasks.add(this.newChildTask)
-   
-   this.childTasks = await this.$api.tasks.allByParentId(this.task.id);
-   
-  },
   closeFormTaskAdd(){
    this.task = {};
   },
@@ -194,9 +175,7 @@ export default {
    let result = lastname + ( (lastnamewho !=null) ? lastnamewho : "" ) + ' ' + firstname.substring(0,1).toUpperCase() + middlename.substring(0,1).toUpperCase();
    return result;
   },
-  // save(person){   
-  //   console.log(' save = UPDATE ')
-  // },
+
   abrev(str){
    if( str !== null) {    
     return ( 
@@ -229,16 +208,17 @@ export default {
  },
  async created(){
   this.persons = await this.$api.persons.all();
-  this.task = await this.$api.tasks.getOne(this.id)
-  this.childTasks = await this.$api.tasks.allByParentId(this.task.id) 
+	console.log(this.persons)
+  // this.task = await this.$api.tasks.getOne(this.id)
+  // this.childTasks = await this.$api.tasks.allByParentId(this.task.id) 
 
-  let getTaskTypes = await this.$api.taskTypes.all();
-  this.taskTypes = getTaskTypes;
-  this.taskTypesSelected = this.task.taskTypeId;
+  // let getTaskTypes = await this.$api.taskTypes.all();
+  // this.taskTypes = getTaskTypes;
+  // this.taskTypesSelected = this.task.taskTypeId;
 
-  let getWorkApps = await this.$api.workApps.all();
-  this.workApps = getWorkApps;
-  this.workAppsSelected = this.task.workAppId;
+  // let getWorkApps = await this.$api.workApps.all();
+  // this.workApps = getWorkApps;
+  // this.workAppsSelected = this.task.workAppId;
 
 console.log(this.task.id)
 

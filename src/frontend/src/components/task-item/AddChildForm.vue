@@ -2,7 +2,9 @@
 	<div class="row g-0">		
 	<!-- <div v-if="mode.edit"> -->
 			<h3>Добавить Задачу</h3>
-<hr>
+		<div class="col-1"></div>
+
+		<div class="col-10">
 			<div class="row g-0 align-items-end my-3">
 				<div class="col">
 					<label for="" class="form-label">Заголовок</label>
@@ -25,6 +27,9 @@
 				</div>
 			</div>
 	</div>
+	</div>
+<hr>
+
 </template>
 
 <script>
@@ -33,10 +38,14 @@ export default {
 	// props: { task: Object },
 	data:()=>({
 		task:{ },
-		persons:{ },
+		persons: { },
+		workApps:{ },
 		newChildTask:{},
 		taskTypes: {},
-		workApps: {}
+		initiatorSelected: null,
+  managerSelected: null,
+  taskTypesSelected: null,
+  workAppsSelected: null,
 	}),
 	computed: {
 		// id(){ return this.task.id;	},
@@ -58,6 +67,18 @@ export default {
 		// 	let options = { year: 'numeric', month: 'numeric', day: 'numeric'};
 		// 	return  d.toLocaleDateString('ru-RU', options);
 		// }
+
+	// 	  async addChildTask(){
+  //  this.newChildTask.dateStart = new Date();
+  //  this.newChildTask.managerId = this.task.managerId;
+  //  this.newChildTask.parentId = this.task.id
+  //  console.log(this.newChildTask)
+
+  //  // let result = await this.$api.tasks.add(this.newChildTask)
+   
+  //  this.childTasks = await this.$api.tasks.allByParentId(this.task.id);
+   
+  // },
 	},
 }
 </script>

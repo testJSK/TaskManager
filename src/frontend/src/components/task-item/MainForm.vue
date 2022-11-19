@@ -70,6 +70,7 @@
 			</div>
 			
 
+<hr>
 
 
 </template>
@@ -77,10 +78,10 @@
 <script>
 export default {
 	name: 'AppMainForm',
-	// props: { task: Object },
+	props: { persons: Object },
 	data:()=>({
 		task:{ },
-		persons:{ },
+		// persons:{ },
 		workApps:{ },
 		taskTypes: { },
 		isShowForm: false,
