@@ -1,6 +1,10 @@
 <template>
-	<div class="row g-0">
-		<h2>{{ itemTitle }}</h2>
+		<app-main-form></app-main-form>
+		<app-add-child-form></app-add-child-form>
+		<app-child-list-form></app-child-list-form>
+
+	<!-- <div class="row g-0"> -->
+		<!-- <h2>{{ itemTitle }}</h2>
 		<div class="col-1"></div>
 
 		<div class="col-10">
@@ -8,7 +12,7 @@
 				<label for="" class="form-label">Заголовок</label>
 				<input type="text" class="form-control" v-model="task.title">
 			</div>
-<!--  -->
+
 			<div class="row g-0 justify-content-between">
 				<div class="col-5 my-2">
 					<label for="" class="form-label">Инициатор</label>
@@ -23,7 +27,7 @@
 					</select>
 				</div>
 			</div>
-<!--  -->
+
 			<div class="row g-0 justify-content-between">
 				<div class="col-5 my-2">
 					<label for="" class="form-label">Work App</label>
@@ -38,7 +42,7 @@
 				</select>
 				</div>
 			</div>
-<!--  -->
+
 			<div class="row g-0 justify-content-between">
 				<div class="col-5 my-2">
 					<label for="" class="from-label">Start</label>
@@ -49,12 +53,12 @@
 					<input type="date" class="form-control" v-model="task.dateEnd">
 				</div>
 			</div>
-<!--  -->
+
 			<div class="row g-0">
 				<label for="" class="form-label">Описание</label>     
 				<textarea type="text" class="form-control" v-model="task.description"></textarea>
 			</div>
-<!--  -->
+
 			<hr>
 			<div class="row g-0 my-4">
 				<div class="col">
@@ -65,8 +69,9 @@
 					<button type="button" class="btn btn-success mx-2" @click.prevent="updateTask">Save</button>
 				</router-link>
 				</div>
-			</div>
+			</div> -->
 <!-- 		 -->
+<!-- <div v-if="mode.edit">
 			<h3>Добавить Задачу</h3>
 <hr>
 			<div class="row g-0 align-items-end my-3">
@@ -90,10 +95,15 @@
 					<button class="btn btn-success" @click.prevent="addChildTask">Add</button>
 				</div>
 			</div>
-		</div>
-		<hr>	
+			</div>
+			</div> -->
 
+
+		
+<!-- <div v-if="mode.edit"> -->
 <!-- 		 -->
+
+<!-- <div>
    <h3> Задачи:</h3>
 		<div class="row g-0 align-items-end my-3">
 			<ol class="list-group list-group-numbered">
@@ -106,16 +116,21 @@
 			</ol>
 		</div>
 	</div>
+</div> -->
 </template>
 
 <script>
 import { mapActions } from 'vuex';
+import AppMainForm from '@/components/task-item/MainForm.vue'
+import AppAddChildForm from '@/components/task-item/AddChildForm.vue'
+import AppChildListForm from '@/components/task-item/ChildListForm.vue'
 
 export default {
  name: 'TaskItemView',
- components: { },
+ components: { AppMainForm, AppAddChildForm, AppChildListForm },
  data: () => ({  
-  isShowForm: false,
+  mode: {add: false, edit: false, read: false},
+	isShowForm: false,
   editmode: false,
   task: {},
   taskTypes: {},

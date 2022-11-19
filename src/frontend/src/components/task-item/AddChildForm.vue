@@ -1,0 +1,63 @@
+<template>
+	<div class="row g-0">		
+	<!-- <div v-if="mode.edit"> -->
+			<h3>Добавить Задачу</h3>
+<hr>
+			<div class="row g-0 align-items-end my-3">
+				<div class="col">
+					<label for="" class="form-label">Заголовок</label>
+					<input type="text" class="form-control" v-model="newChildTask.title">
+				</div>
+				<div class="col-2 mx-1">
+					<label for="" class="form-label">Тип</label>
+					<select name="" id="" class="form-select" v-model="newChildTask.taskTypeId">
+						<option v-for="i in taskTypes" :value="i.id" v-bind:key="i.id">{{ i.title }}</option>
+					</select>
+				</div>
+				<div class="col-2 ">
+					<label for="" class="form-label">Программа</label>
+					<select name="" id="" class="form-select" v-model="newChildTask.workAppId">
+						<option v-for="i in workApps" :value="i.id" v-bind:key="i.id">{{ i.title }}</option>
+					</select>
+				</div>    
+				<div class="col-1 mx-1">					
+					<button class="btn btn-success" @click.prevent="addChildTask">Add</button>
+				</div>
+			</div>
+	</div>
+</template>
+
+<script>
+export default {
+	name: 'AppChildForm',
+	// props: { task: Object },
+	data:()=>({
+		task:{ },
+		persons:{ },
+		newChildTask:{},
+		taskTypes: {},
+		workApps: {}
+	}),
+	computed: {
+		// id(){ return this.task.id;	},
+		// title(){ return this.task.title; },
+		// initiator(){ return this.shortName(this.task.initiator); },
+		// manager(){ return this.shortName(this.task.manager); },
+		// dateStart(){ return this.shortDate(this.task.dateStart); },
+	},
+	methods: {
+		// shortName(person){			
+		// 	let lb = person.lastNameBase ? person.lastNameBase : '';			
+		// 	let ln = person.lastNameWho ? person.lastNameWho : '';
+		// 	let fb = person.firstNameBase ? (person.firstNameBase).substring(0,1) : '';
+		// 	let mb = person.firstNameBase ? (person.firstNameBase).substring(0,1) : '';						
+		// 	return `${lb}${ln} ${fb}${mb}`
+		// },
+		// shortDate(date){
+		// 	let d = new Date(date);
+		// 	let options = { year: 'numeric', month: 'numeric', day: 'numeric'};
+		// 	return  d.toLocaleDateString('ru-RU', options);
+		// }
+	},
+}
+</script>

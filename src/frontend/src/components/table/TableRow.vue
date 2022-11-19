@@ -8,7 +8,7 @@
 
 <script>
 export default {
-	name: 'TableRow',
+	name: 'AppTableRow',
 	props: { task: Object },
 	computed: {
 		id(){ return this.task.id;	},
