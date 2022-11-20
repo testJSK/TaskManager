@@ -1,116 +1,12 @@
 <template>
 		<app-main-form
+			:prop_task="task"
 			:persons="persons"
+			:workApps="workApps"
+			:taskTypes="taskTypes"
 		></app-main-form>
 		<app-add-child-form></app-add-child-form>
 		<app-child-list-form></app-child-list-form>
-	<!-- <div class="row g-0"> -->
-		<!-- <h2>{{ itemTitle }}</h2>
-		<div class="col-1"></div>
-
-		<div class="col-10">
-			<div class="row g-0">
-				<label for="" class="form-label">Заголовок</label>
-				<input type="text" class="form-control" v-model="task.title">
-			</div>
-
-			<div class="row g-0 justify-content-between">
-				<div class="col-5 my-2">
-					<label for="" class="form-label">Инициатор</label>
-					<select name="" id="" class="form-select" v-model="task.initiatorId">
-						<option v-for="i in persons" :value="i.id" v-bind:key="i.id">{{ fio( i ) }}</option>
-					</select>
-				</div>
-				<div class="col-5 my-2 mx-2">
-					<label for="" class="form-label">Исполнитель</label>
-					<select name="" id="" class="form-select" v-model="task.managerId">
-						<option v-for="i in persons" :value="i.id" v-bind:key="i.id">{{ fio( i ) }}</option>
-					</select>
-				</div>
-			</div>
-
-			<div class="row g-0 justify-content-between">
-				<div class="col-5 my-2">
-					<label for="" class="form-label">Work App</label>
-						<select name="" id="" class="form-select" v-model="task.workAppId">
-							<option v-for="i in workApps" :value="i.id" v-bind:key="i.id">{{ i.title }}</option>
-						</select>
-				</div>
-				<div class="col-5 my-2 mx-2">
-				<label for="" class="form-label">Task type</label>
-				<select name="" id="" class="form-select" v-model="task.taskTypeId">
-					<option v-for="i in taskTypes" :value="i.id" v-bind:key="i.id">{{ i.title }}</option>
-				</select>
-				</div>
-			</div>
-
-			<div class="row g-0 justify-content-between">
-				<div class="col-5 my-2">
-					<label for="" class="from-label">Start</label>
-					<input type="date" class="form-control" v-model="task.dateStart">
-				</div>
-				<div class="col-5 my-2 mx-2">
-					<label for="" class="from-label">End</label>
-					<input type="date" class="form-control" v-model="task.dateEnd">
-				</div>
-			</div>
-
-			<div class="row g-0">
-				<label for="" class="form-label">Описание</label>     
-				<textarea type="text" class="form-control" v-model="task.description"></textarea>
-			</div>
-
-			<hr>
-			<div class="row g-0 my-4">
-				<div class="col">
-				<router-link :to="{ name: 'home'}">
-					<button class="btn btn-danger" @click="closeFormTaskAdd">Close</button>
-				</router-link>
-				<router-link :to="{ name: 'task'}">
-					<button type="button" class="btn btn-success mx-2" @click.prevent="updateTask">Save</button>
-				</router-link>
-				</div>
-			</div> -->
-<!-- <div v-if="mode.edit">
-			<h3>Добавить Задачу</h3>
-<hr>
-			<div class="row g-0 align-items-end my-3">
-				<div class="col">
-					<label for="" class="form-label">Заголовок</label>
-					<input type="text" class="form-control" v-model="newChildTask.title">
-				</div>
-				<div class="col-2 mx-1">
-					<label for="" class="form-label">Тип</label>
-					<select name="" id="" class="form-select" v-model="newChildTask.taskTypeId">
-						<option v-for="i in taskTypes" :value="i.id" v-bind:key="i.id">{{ i.title }}</option>
-					</select>
-				</div>
-				<div class="col-2 ">
-					<label for="" class="form-label">Программа</label>
-					<select name="" id="" class="form-select" v-model="newChildTask.workAppId">
-						<option v-for="i in workApps" :value="i.id" v-bind:key="i.id">{{ i.title }}</option>
-					</select>
-				</div>    
-				<div class="col-1 mx-1">					
-					<button class="btn btn-success" @click.prevent="addChildTask">Add</button>
-				</div>
-			</div>
-			</div>
-			</div> -->
-<!-- <div>
-   <h3> Задачи:</h3>
-		<div class="row g-0 align-items-end my-3">
-			<ol class="list-group list-group-numbered">
-				<li class="list-group-item" v-for="i in childTasks" :key="i.id">
-					{{ i.title }} {{ workApps.find( app => (app.id === i.workAppId).title) }}
-					<router-link :to="{ name: 'tasks', params: { id: i.id } }">    
-						<button class="btn btn-primary" @click="getTask(i.id)">...</button>
-					</router-link>
-				</li>
-			</ol>
-		</div>
-	</div>
-</div> -->
 </template>
 
 <script>
@@ -126,66 +22,25 @@ export default {
   mode: {add: false, edit: false, read: false},
 	isShowForm: false,
   editmode: false,
-  task: {},
+  // id: null,
+	task: {},
   persons: {},
   workApps: {},
   taskTypes: {},
-  
-
   childTasks: {},
   newChildTask: {},
  }),
  computed: {   
   // ...mapGetters( 'tasks', { task: 'editItem' } ),
-  id(){
-   return this.$route.params.id;
+	id(){
+		return this.$route.params.id;
   },
-	taskType(){
-		return  (this.task.parentId == null) ? "Запрос" : "Задачу";
-	},
-	taskNum(){
-		return (this.id == null) ? "" : this.id;
-	},
-	itemTitle(){
-		let res;
-		res = isNaN(this.taskNum) ? "Добавить" : 'Редактировать '
-		res = res + ' ' + this.taskType
-		return res ;
-	},
-  // dateForman(date){
-  //  return date.substring(0, 10);
-  // },
  },
  methods: {
   ...mapActions( 'persons', {addPerson: 'add' , updatePerson: 'update'} ),
   async updateTask(){
    let result = await this.$api.tasks.update(this.task)
    console.log(result)
-
-  },
-
-  closeFormTaskAdd(){
-   this.task = {};
-  },
-  fio( person ){
-   let lastname = person.lastNameBase;
-   let lastnamewho = person.lastNameWho;
-   let firstname = person.firstNameBase;
-   let middlename = person.middleNameBase;
-   let result = lastname + ( (lastnamewho !=null) ? lastnamewho : "" ) + ' ' + firstname.substring(0,1).toUpperCase() + middlename.substring(0,1).toUpperCase();
-   return result;
-  },
-
-  abrev(str){
-   if( str !== null) {    
-    return ( 
-     str.trim().split(' ').map( word => { 
-       return ( word.length > 1 ) ? word[0].toUpperCase(): word[0].toLowerCase() 
-      }).join('')
-    ) 
-   } else {
-     return "";
-   }      
   },
   async getTask(id){
    this.persons = await this.$api.persons.all();
@@ -206,31 +61,22 @@ export default {
    }   
   },
  },
- async created(){
-  this.persons = await this.$api.persons.all();
-	console.log(this.persons)
-  // this.task = await this.$api.tasks.getOne(this.id)
-  // this.childTasks = await this.$api.tasks.allByParentId(this.task.id) 
+	async created(){
+		// console.log(this.task.id)
+		this.persons = await this.$api.persons.all();
+		this.workApps = await this.$api.workApps.all();
+		this.taskTypes = await this.$api.taskTypes.all();
+		console.log(this.id)
+		this.task = await this.$api.tasks.getOne(this.id)
+		console.log(this.task)
 
-  // let getTaskTypes = await this.$api.taskTypes.all();
-  // this.taskTypes = getTaskTypes;
-  // this.taskTypesSelected = this.task.taskTypeId;
+		// this.childTasks = await this.$api.tasks.allByParentId( this.task.id)     
 
-  // let getWorkApps = await this.$api.workApps.all();
-  // this.workApps = getWorkApps;
-  // this.workAppsSelected = this.task.workAppId;
 
-console.log(this.task.id)
-
-// let childTasks = await this.$api.tasks.allByParentId( this.task.id)   
-//    this.childTasks = childTasks;   
-
-  // if(this.task.parentId !== undefined){
-   
-  // } 
-  
+		// this.childTasks = await this.$api.tasks.allByParentId(this.task.id) 
+		// this.taskTypesSelected = this.task.taskTypeId;
+		// this.workAppsSelected = this.task.workAppId;		
  },
-
 }
 </script>
 <style scoped>

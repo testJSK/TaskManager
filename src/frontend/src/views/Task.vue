@@ -38,7 +38,7 @@ export default {
     console.log("create() TASK ")    
 	},
 }
-   // this.persons = await this.$api.persons.all();
+   
     // this.task = await this.$api.tasks.getOne(this.id)
     // // this.childTasks = await this.$api.tasks.allByParentId(this.task.id) 
 
@@ -58,40 +58,10 @@ export default {
     //   // let result = await this.$api.tasks.add(this.newChildTask)
       
     //   // this.childTasks = await this.$api.tasks.allByParentId(this.task.id);
-      
-    // },
-    // closeFormTaskAdd(){
-    //   this.task = {};
-    // },
-    // fio( person ){
-    //   let lastname = person.lastNameBase;
-    //   let lastnamewho = person.lastNameWho;
-    //   let firstname = person.firstNameBase;
-    //   let middlename = person.middleNameBase;
-    //   let result = lastname + ( (lastnamewho !=null) ? lastnamewho : "" ) + ' ' + firstname.substring(0,1).toUpperCase() + middlename.substring(0,1).toUpperCase();
-    //   return result;
-    // },
-    // save(person){     
-    //     console.log(' save = UPDATE ')
-    // },
-    // abrev(str){
-    //   if( str !== null) {        
-    //     return ( 
-    //       str.trim().split(' ').map( word => { 
-    //           return ( word.length > 1 ) ? word[0].toUpperCase(): word[0].toLowerCase() 
-    //         }).join('')
-    //     ) 
-    //   } else {
-    //      return "";
-    //   }            
-    // },
-    // async getTask(id){
-    //   this.persons = await this.$api.persons.all();
-      
-    //   this.childTasks = {};
-    //   // let getTask = await this.$api.tasks.getOne(id);      
-    //   // this.task = getTask;  
-      
+
+    
+    //   this.task = await this.$api.tasks.getOne(id);      
+          
     //   // let a = new Date(  this.task.dateStart);
       
     //   // let n = a.getFullYear() + '-' +a.getMonth() + '-' +  (
@@ -101,8 +71,7 @@ export default {
     //   this.task.dateStart = this.task.dateStart.substring(0, 10)
     //   if(this.task.dateEnd){
     //     this.task.dateEnd = this.task.dateEnd.substring(0, 10)
-    //   }      
-    // },
+
 </script>
 <style scoped>
   .persons {
