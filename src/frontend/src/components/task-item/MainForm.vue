@@ -99,6 +99,7 @@ export default {
 	computed: {
 		mainFormTitle(){
 			this.task = this.prop_task
+			console.log('-----------------')
 
 			return (this.task.parentId) ? "Задача" : "Запрос"
 		},

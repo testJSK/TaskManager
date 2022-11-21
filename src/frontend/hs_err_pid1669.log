@@ -1,0 +1,81 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGBUS (0x7) at pc=0x00007f6f2ccdacc8, pid=1669, tid=1924
+#
+# JRE version: Java(TM) SE Runtime Environment (19.0+36) (build 19+36-2238)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (19+36-2238, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, parallel gc, linux-amd64)
+# Problematic frame:
+# V  [libjvm.so+0xbeccc8]
+#
+# Core dump will be written. Default location: Core dumps may be processed with "/usr/lib/systemd/systemd-coredump %P %u %g %s %t %c %h" (or dumping to /home/june/Документы/Java/TM_009/tm/src/frontend/core.1669)
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: --add-modules=ALL-SYSTEM --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/sun.nio.fs=ALL-UNNAMED -Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Djava.import.generatesMetadataFilesAtProjectRoot=false -Dfile.encoding=utf8 -XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -Xlog:disable -javaagent:/home/june/.vscode-oss/extensions/redhat.java-1.12.0-universal/lombok/lombok-1.18.24.jar -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/home/june/.config/Code - OSS/User/workspaceStorage/e5ec76483140ab0ee32112ff5168119b/redhat.java /home/june/.vscode-oss/extensions/redhat.java-1.12.0-universal/server/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar -configuration /home/june/.config/Code - OSS/User/globalStorage/redhat.java/1.12.0/config_linux -data /home/june/.config/Code - OSS/User/workspaceStorage/e5ec76483140ab0ee32112ff5168119b/redhat.java/jdt_ws
+
+Host: 11th Gen Intel(R) Core(TM) i5-11400 @ 2.60GHz, 5 cores, 6G, Manjaro Linux
+Time: Sun Nov 20 17:55:24 2022 +07 elapsed time: 133622.832549 seconds (1d 13h 7m 2s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f6ea809c040):  JavaThread "RxSchedulerPurge-1" daemon [_thread_in_vm, id=1924, stack(0x00007f6ebbc00000,0x00007f6ebbd00000)]
+
+Stack: [0x00007f6ebbc00000,0x00007f6ebbd00000],  sp=0x00007f6ebbcfe690,  free space=1017k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xbeccc8]
+V  [libjvm.so+0xbed9d6]
+V  [libjvm.so+0x8568c2]
+V  [libjvm.so+0xd38526]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+v  ~RuntimeStub::_new_array_Java 0x00007f6f146428a7
+J 9658 c2 java.util.concurrent.ConcurrentHashMap$CollectionView.toArray()[Ljava/lang/Object; java.base@19 (145 bytes) @ 0x00007f6f14f99958 [0x00007f6f14f99120+0x0000000000000838]
+J 9659 c2 io.reactivex.internal.schedulers.SchedulerPoolFactory$ScheduledTask.run()V (66 bytes) @ 0x00007f6f14f9ae48 [0x00007f6f14f9ade0+0x0000000000000068]
+J 11790 c2 java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run()V java.base@19 (57 bytes) @ 0x00007f6f1536080c [0x00007f6f15360720+0x00000000000000ec]
+J 11807% c2 java.util.concurrent.ThreadPoolExecutor.runWorker(Ljava/util/concurrent/ThreadPoolExecutor$Worker;)V java.base@19 (187 bytes) @ 0x00007f6f15366fc8 [0x00007f6f15366d20+0x00000000000002a8]
+j  java.util.concurrent.ThreadPoolExecutor$Worker.run()V+5 java.base@19
+j  java.lang.Thread.run()V+13 java.base@19
+v  ~StubRoutines::call_stub 0x00007f6f14529cc6
+
+siginfo: si_signo: 7 (SIGBUS), si_code: 2 (BUS_ADRERR), si_addr: 0x00000000ebdef1dc
+
+Registers:
+RAX=0x00007f6f2d3093d8, RBX=0x00007f6f2d40ca7d, RCX=0x0000000000000000, RDX=0x000000000000001d
+RSP=0x00007f6ebbcfe690, RBP=0x00007f6ebbcfe6b0, RSI=0x00000000ebdef1d0, RDI=0x00000000ebdef1e0
+R8 =0x00007f6f240455b0, R9 =0x0000000000000b18, R10=0x00007f6f2ce264b0, R11=0x00000000ebdeefc0
+R12=0x00000000ebdef1d0, R13=0x00007f6ebbcfe750, R14=0x0000000000000001, R15=0x0000000800000e60
+RIP=0x00007f6f2ccdacc8, EFLAGS=0x0000000000010202, CSGSFS=0x002b000000000033, ERR=0x0000000000000006
+  TRAPNO=0x000000000000000e
+
+
+Register to memory mapping:
+
+RAX=0x00007f6f2d3093d8: <offset 0x000000000121b3d8> in /usr/lib/jvm/java-19-jdk/lib/server/libjvm.so at 0x00007f6f2c0ee000
+RBX=0x00007f6f2d40ca7d: <offset 0x000000000131ea7d> in /usr/lib/jvm/java-19-jdk/lib/server/libjvm.so at 0x00007f6f2c0ee000
+RCX=0x0 is NULL
+RDX=0x000000000000001d is an unknown value
+RSP=0x00007f6ebbcfe690 is pointing into the stack for thread: 0x00007f6ea809c040
+RBP=0x00007f6ebbcfe6b0 is pointing into the stack for thread: 0x00007f6ea809c040
+RSI=0x00000000ebdef1d0 is an unknown value
+RDI=0x00000000ebdef1e0 is an unknown value
+R8 =0x00007f6f240455b0 points into unknown readable memory: 0x00000000ebdfcf20 | 20 cf df eb 00 00 00 00
+R9 =0x0000000000000b18 is an unknown value
+R10=0x00007f6f2ce264b0: <offset 0x0000000000d384b0> in /usr/lib/jvm/java-19-jdk/lib/server/libjvm.so at 0x00007f6f2c0ee000
+R11=0x00000000ebdeefc0 points into unknown readable memory: 0x0034002e0032002f | 2f 00 32 00 2e 00 34 00
+R12=0x00000000ebdef1d0 is an unknown value
+R13=0x00007f6ebbcfe750 is pointing into the stack for thread: 0x00007f6ea809c040
+R14=0x0000000000000001 is an unknown value
+R15=0x0000000800000e60 is a pointer to class: 
+java.lang.Object {0x0000000800000e60}
+ - instance size:     2
+ - klass size:        62
+ - access:            public synchronized 
+ - state:             fully_initialized
+ - name:              'java/lang/Object'
+ - super:             NULL
+ - sub:               'org/eclipse/jdt/core/compiler/CompilationProgress'   'java/lang/invoke/LambdaForm$DMH+0x00000008016ee800'   'com/microsoft/java/debug/core/protocol/Types$Message'   'java/text/DontCareFieldPosition$1'   
