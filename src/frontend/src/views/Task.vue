@@ -23,7 +23,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions( 'persons', {addPerson: 'add' , updatePerson: 'update'} ),
+    ...mapActions( 'persons', { addPerson: 'add' , updatePerson: 'update' } ),
   },
   async renderTracked(){
 		console.log('actrenderTrackedivated')

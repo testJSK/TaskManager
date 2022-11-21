@@ -1,4 +1,5 @@
 <template>
+	
 		<app-main-form
 			:prop_task="task"
 			:persons="persons"
@@ -37,7 +38,11 @@ export default {
   },
  },
  methods: {
-  ...mapActions( 'persons', {addPerson: 'add' , updatePerson: 'update'} ),
+  ...mapActions( 'persons', { 
+		addPerson: 'add', 
+		updatePerson: 'update',
+		workAppsGetAll: 'getAll'
+		} ),
   async updateTask(){
    let result = await this.$api.tasks.update(this.task)
    console.log(result)
@@ -62,6 +67,9 @@ export default {
   },
  },
 	async created(){
+		
+
+
 		// console.log(this.task.id)
 		this.persons = await this.$api.persons.all();
 		this.workApps = await this.$api.workApps.all();

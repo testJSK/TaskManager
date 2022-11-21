@@ -15,11 +15,13 @@ export default () => {
     const storageHelper = createStorageHelper();
     const store = createStore(api, formatHelper);
     const router = createRouter(store);
-
-    store.dispatch('tasks/getAll').then( () => {
-        store.dispatch('persons/getAll');
+		
+		store.dispatch('workApps/getAll').then( () => {
+			store.dispatch('tasks/getAll').then( () => {
+					store.dispatch('persons/getAll');
+			});
         // store.dispatch('workapps/getAll');
-    });
+		});
     
     
 

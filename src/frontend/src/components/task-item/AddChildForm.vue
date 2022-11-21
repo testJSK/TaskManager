@@ -33,8 +33,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-	name: 'AppChildForm',
+	name: 'AppAddChildForm',
 	// props: { task: Object },
 	data:()=>({
 		task:{ },
@@ -48,6 +50,7 @@ export default {
   workAppsSelected: null,
 	}),
 	computed: {
+		...mapGetters('workApps', { getAll: 'items' })
 		// id(){ return this.task.id;	},
 		// title(){ return this.task.title; },
 		// initiator(){ return this.shortName(this.task.initiator); },
@@ -55,6 +58,10 @@ export default {
 		// dateStart(){ return this.shortDate(this.task.dateStart); },
 	},
 	methods: {
+		async addChildTask(){
+			console.log(this.getAll)
+			this.workApps =this.getAll
+		}
 		// shortName(person){			
 		// 	let lb = person.lastNameBase ? person.lastNameBase : '';			
 		// 	let ln = person.lastNameWho ? person.lastNameWho : '';
@@ -80,5 +87,33 @@ export default {
    
   // },
 	},
+	beforeRouteUpdate( to, from, next){
+		next( ()=>{
+			this.workApps =this.getAll
+			console.log('beforeRouteEnter(){')
+
+		})
+
+	}
+	,
+	// async created(){
+	// 	},
+	// onActivated(){
+		
+	// 	console.log('AAAAAAAAAA activated(){ -6+++')
+	// 	this.workApps =this.getAll
+	// 	console.log(this.workApps)
+	// },
+	// 	renderTriggered(){
+			
+	// 		this.$nextTick( () => {
+	// 		this.workApps =this.getAll
+	// 		console.log('this.$nextTick( () => {      this.workApps')	
+	// 		})
+
+	// 	// console.log('AAAAAAAAAA updated(){ -6+++')
+	// 	// this.workApps =this.getAll
+	// 	// console.log(this.workApps)
+	// },
 }
 </script>
