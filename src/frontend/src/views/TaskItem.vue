@@ -6,7 +6,9 @@
 			:workApps="workApps"
 			:taskTypes="taskTypes"
 		></app-main-form>
-		<app-add-child-form v-if="true"></app-add-child-form>
+		<app-add-child-form 
+			:parentId="id"
+		></app-add-child-form>
 		<app-child-list-form></app-child-list-form>
 </template>
 

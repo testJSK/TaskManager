@@ -14,8 +14,7 @@ export default ( taskTypesApi ) => ({
 	actions: {
 	async getAll( { commit } ) {
 		const types = await taskTypesApi.all()
-		console.log('getAll types ++++++ +++++++++++++++++')
-		// commit( 'getAll', types );
+		commit( 'getAll', types );
 		},
 	}
 })

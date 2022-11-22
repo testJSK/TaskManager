@@ -11,7 +11,7 @@ export default ( api, formatHelper ) => createStore({
     tasks: createTaskStore(api.tasks, formatHelper),
     persons: createPersonStore(api.persons),
     workApps: createWorkAppsStore(api.workApps),
-    taskTypes: createTaskTypesStore(api.taksTypes),
+    taskTypes: createTaskTypesStore(api.taskTypes),
     taskStatuses: createTaskStatusesStore(api.taskStatuses),
   },
 

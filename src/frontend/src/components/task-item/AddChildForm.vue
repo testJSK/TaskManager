@@ -36,7 +36,7 @@ import { mapGetters } from 'vuex'
 
 export default {
 	name: 'AppAddChildForm',
-	// props: { task: Object },
+	props: { parentId: String },
 	data:()=>({
 		task:{ },
 		persons: { },
@@ -50,21 +50,27 @@ export default {
 	},
 	watch: {
 		getAllWorkApps(){
-			console.log('watch')
 			this.workApps = this.getAllWorkApps
-			console.log(this.workApps[0].id)
 			this.newChildTask.workAppId = this.workApps[0].id
 		},
 		getAllTaskTypes(){
-			console.log('watch - getAllTaskTypes ')
+			this.taskTypes = this.getAllTaskTypes;
+			this.newChildTask.taskTypeId = this.taskTypes[0].id
 		},
 	},
 	methods: {
 		async addChildTask(){
+			console.log('this.newChildTask.parentId = this.task.id;')
 			// console.log(this.getAll)
 			// this.workApps =this.getAllWorkApps
 		},
 
+	},
+	async created(){
+		this.task.id = this.parentId;
+			console.log('created(){ {' + this.parentId)
+	
+	},
 		// shortName(person){			
 		// 	let lb = person.lastNameBase ? person.lastNameBase : '';			
 		// 	let ln = person.lastNameWho ? person.lastNameWho : '';
@@ -79,33 +85,28 @@ export default {
 		// }
 
 	// 	  async addChildTask(){
-  //  this.newChildTask.dateStart = new Date();
-  //  this.newChildTask.managerId = this.task.managerId;
-  //  this.newChildTask.parentId = this.task.id
-  //  console.log(this.newChildTask)
+	//  this.newChildTask.dateStart = new Date();
+	//  this.newChildTask.managerId = this.task.managerId;
+	//  this.newChildTask.parentId = this.task.id
+	//  console.log(this.newChildTask)
 
-  //  // let result = await this.$api.tasks.add(this.newChildTask)
-   
-  //  this.childTasks = await this.$api.tasks.allByParentId(this.task.id);
-   
-  // },
-	},
+	//  // let result = await this.$api.tasks.add(this.newChildTask)
+	 
+	//  this.childTasks = await this.$api.tasks.allByParentId(this.task.id);
+	 
+	// },
 	// beforeRouteUpdate( to, from, next){
 	// 	next( ()=>{
-	// 		this.workApps =this.getAll
+		// 		this.workApps =this.getAll
 	// 		console.log('beforeRouteEnter(){')
 
 	// 	})
 
 	// }
 	// ,
-	// async created(){
-	// 	console.log('created(){ {')
-
-	// 	},
 	// onActivated(){
 		
-	// 	console.log(' activated(){ -6+++')
+		// 	console.log(' activated(){ -6+++')
 	// 	this.workApps =this.getAll
 	// 	console.log(this.workApps)
 	// },
