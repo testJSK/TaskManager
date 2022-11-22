@@ -1,7 +1,7 @@
 <template>
 	<div class="row g-0">		
 	<!-- <div v-if="mode.edit"> -->
-			<h3>Добавить Задачу</h3>
+			<h3 v-if="!workApps">Добавить Задачу</h3>
 		<div class="col-1"></div>
 
 		<div class="col-10">
@@ -96,24 +96,49 @@ export default {
 
 	}
 	,
-	// async created(){
-	// 	},
-	// onActivated(){
-		
-	// 	console.log('AAAAAAAAAA activated(){ -6+++')
-	// 	this.workApps =this.getAll
-	// 	console.log(this.workApps)
-	// },
-	// 	renderTriggered(){
-			
-	// 		this.$nextTick( () => {
-	// 		this.workApps =this.getAll
-	// 		console.log('this.$nextTick( () => {      this.workApps')	
-	// 		})
+	async created(){
+		console.log('created(){ {')
 
-	// 	// console.log('AAAAAAAAAA updated(){ -6+++')
-	// 	// this.workApps =this.getAll
-	// 	// console.log(this.workApps)
-	// },
+		},
+	onActivated(){
+		
+		console.log(' activated(){ -6+++')
+		this.workApps =this.getAll
+		console.log(this.workApps)
+	},
+		renderTriggered(){
+			
+			this.$nextTick( () => {
+			this.workApps =this.getAll
+			console.log('this.$nextTick( () => {      this.workApps')	
+			})
+
+		console.log('renderTriggered')
+		// this.workApps =this.getAll
+		console.log(this.workApps)
+	},
+
+	async renderTracked(){
+		console.log('actrenderTrackedivated')
+		// this.task = await this.prop_task			
+		this.workApps = this.getAll
+  },  
+	async onBeforeUpdated(){
+		console.log('onBeforeUpdated()')
+	},
+	async onUpdated(){
+		// console.log('onUpdated(){')
+		// this.task = await this.prop_task
+		console.log(this.task)
+	},
+  async activated(){
+		console.log('activated')
+  },
+  async renderTriggered(){
+		console.log('renderTriggered')
+	},
+
+
+
 }
 </script>

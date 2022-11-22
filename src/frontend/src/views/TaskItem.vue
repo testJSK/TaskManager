@@ -6,7 +6,7 @@
 			:workApps="workApps"
 			:taskTypes="taskTypes"
 		></app-main-form>
-		<app-add-child-form></app-add-child-form>
+		<app-add-child-form v-if="true"></app-add-child-form>
 		<app-child-list-form></app-child-list-form>
 </template>
 
@@ -45,7 +45,7 @@ export default {
 		} ),
   async updateTask(){
    let result = await this.$api.tasks.update(this.task)
-   console.log(result)
+  //  console.log(result)
   },
   async getTask(id){
    this.persons = await this.$api.persons.all();
@@ -74,9 +74,9 @@ export default {
 		this.persons = await this.$api.persons.all();
 		this.workApps = await this.$api.workApps.all();
 		this.taskTypes = await this.$api.taskTypes.all();
-		console.log(this.id)
+		// console.log(this.id)
 		this.task = await this.$api.tasks.getOne(this.id)
-		console.log(this.task)
+		// console.log(this.task)
 
 		// this.childTasks = await this.$api.tasks.allByParentId( this.task.id)     
 

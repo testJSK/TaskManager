@@ -99,12 +99,12 @@ export default {
 	computed: {
 		mainFormTitle(){
 			this.task = this.prop_task
-			console.log('-----------------')
+			// console.log('-----------------')
 
 			return (this.task.parentId) ? "Задача" : "Запрос"
 		},
 		test_task(){
-			console.log(this.task)
+			// console.log(this.task)
 			return this.task
 		}
 		// id(){ return this.task.id;	},
@@ -159,7 +159,7 @@ export default {
 		// }
 	},
 	async created(){
-		console.log("create() MainFormTASK + ")    
+		// console.log("create() MainFormTASK + ")    
 	},
 	// async beforeMount(){
 	// 	console.log('beforeMount(){')
@@ -170,22 +170,22 @@ export default {
 		
 	// },
 	async renderTracked(){
-		console.log('actrenderTrackedivated')
+		// console.log('actrenderTrackedivated')
 		// this.task = await this.prop_task			
   },  
 	async onBeforeUpdated(){
-		console.log('onBeforeUpdated()')
+		// console.log('onBeforeUpdated()')
 	},
 	async onUpdated(){
-		console.log('onUpdated(){')
+		// console.log('onUpdated(){')
 		// this.task = await this.prop_task
-		console.log(this.task)
+		// console.log(this.task)
 	},
   async activated(){
 		console.log('activated')
   },
   async renderTriggered(){
-		console.log('renderTriggered')
+		// console.log('renderTriggered')
 
 
   },
