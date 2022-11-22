@@ -28,8 +28,7 @@
 			</div>
 	</div>
 	</div>
-<hr>
-
+	<hr>
 </template>
 
 <script>
@@ -44,24 +43,28 @@ export default {
 		workApps:{ },
 		newChildTask:{},
 		taskTypes: {},
-		initiatorSelected: null,
-  managerSelected: null,
-  taskTypesSelected: null,
-  workAppsSelected: null,
 	}),
 	computed: {
-		...mapGetters('workApps', { getAll: 'items' })
-		// id(){ return this.task.id;	},
-		// title(){ return this.task.title; },
-		// initiator(){ return this.shortName(this.task.initiator); },
-		// manager(){ return this.shortName(this.task.manager); },
-		// dateStart(){ return this.shortDate(this.task.dateStart); },
+		...mapGetters('workApps', { getAllWorkApps: 'items' }),
+		...mapGetters('taskTypes', { getAllTaskTypes: 'items' }),
+	},
+	watch: {
+		getAllWorkApps(){
+			console.log('watch')
+			this.workApps = this.getAllWorkApps
+			console.log(this.workApps[0].id)
+			this.newChildTask.workAppId = this.workApps[0].id
+		},
+		getAllTaskTypes(){
+			console.log('watch - getAllTaskTypes ')
+		},
 	},
 	methods: {
 		async addChildTask(){
-			console.log(this.getAll)
-			this.workApps =this.getAll
-		}
+			// console.log(this.getAll)
+			// this.workApps =this.getAllWorkApps
+		},
+
 		// shortName(person){			
 		// 	let lb = person.lastNameBase ? person.lastNameBase : '';			
 		// 	let ln = person.lastNameWho ? person.lastNameWho : '';
@@ -87,56 +90,56 @@ export default {
    
   // },
 	},
-	beforeRouteUpdate( to, from, next){
-		next( ()=>{
-			this.workApps =this.getAll
-			console.log('beforeRouteEnter(){')
+	// beforeRouteUpdate( to, from, next){
+	// 	next( ()=>{
+	// 		this.workApps =this.getAll
+	// 		console.log('beforeRouteEnter(){')
 
-		})
+	// 	})
 
-	}
-	,
-	async created(){
-		console.log('created(){ {')
+	// }
+	// ,
+	// async created(){
+	// 	console.log('created(){ {')
 
-		},
-	onActivated(){
+	// 	},
+	// onActivated(){
 		
-		console.log(' activated(){ -6+++')
-		this.workApps =this.getAll
-		console.log(this.workApps)
-	},
-		renderTriggered(){
+	// 	console.log(' activated(){ -6+++')
+	// 	this.workApps =this.getAll
+	// 	console.log(this.workApps)
+	// },
+	// 	renderTriggered(){
 			
-			this.$nextTick( () => {
-			this.workApps =this.getAll
-			console.log('this.$nextTick( () => {      this.workApps')	
-			})
+	// 		this.$nextTick( () => {
+	// 		this.workApps =this.getAll
+	// 		console.log('this.$nextTick( () => {      this.workApps')	
+	// 		})
 
-		console.log('renderTriggered')
-		// this.workApps =this.getAll
-		console.log(this.workApps)
-	},
+	// 	console.log('renderTriggered')
+	// 	// this.workApps =this.getAll
+	// 	console.log(this.workApps)
+	// },
 
-	async renderTracked(){
-		console.log('actrenderTrackedivated')
-		// this.task = await this.prop_task			
-		this.workApps = this.getAll
-  },  
-	async onBeforeUpdated(){
-		console.log('onBeforeUpdated()')
-	},
-	async onUpdated(){
-		// console.log('onUpdated(){')
-		// this.task = await this.prop_task
-		console.log(this.task)
-	},
-  async activated(){
-		console.log('activated')
-  },
-  async renderTriggered(){
-		console.log('renderTriggered')
-	},
+	// async renderTracked(){
+	// 	console.log('actrenderTrackedivated')
+	// 	// this.task = await this.prop_task			
+	// 	this.workApps = this.getAll
+  // },  
+	// async onBeforeUpdated(){
+	// 	console.log('onBeforeUpdated()')
+	// },
+	// async onUpdated(){
+	// 	// console.log('onUpdated(){')
+	// 	// this.task = await this.prop_task
+	// 	console.log(this.task)
+	// },
+  // async activated(){
+	// 	console.log('activated')
+  // },
+  // async renderTriggered(){
+	// 	console.log('renderTriggered')
+	// },
 
 
 

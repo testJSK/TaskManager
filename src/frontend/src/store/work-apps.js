@@ -14,7 +14,6 @@ export default ( workAppsApi ) => ({
 	actions: {
 	async getAll( { commit } ) {
 		const apps = await workAppsApi.all();
-		console.log(' 99999999  === getAll apps ')
 		commit( 'getAll', apps );
 		},
 	},

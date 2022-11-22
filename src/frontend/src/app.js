@@ -16,13 +16,13 @@ export default () => {
     const store = createStore(api, formatHelper);
     const router = createRouter(store);
 		
+		store.dispatch('taskTypes/getAll');
+		
 		store.dispatch('workApps/getAll').then( () => {
 			store.dispatch('tasks/getAll').then( () => {
 					store.dispatch('persons/getAll');
 			});
-        // store.dispatch('workapps/getAll');
 		});
-    
     
 
     const app = createApp(App).use(store).use(router);
