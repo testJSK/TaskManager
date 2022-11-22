@@ -7,7 +7,7 @@
 			:taskTypes="taskTypes"
 		></app-main-form>
 		<app-add-child-form 
-			:parentId="id"
+			:parentTask="task"
 		></app-add-child-form>
 		<app-child-list-form></app-child-list-form>
 </template>

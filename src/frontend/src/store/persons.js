@@ -29,12 +29,12 @@ export default ( personApi ) => ({
     async add({ dispatch }, person ) {
       const result = await personApi.add(person)
       if(result.includes('added')) {
-        dispatch( 'load' );
+        dispatch( 'getAll' );
       }
     },
     async update( { dispatch }, person) {
       const result = await personApi.update(person.id, person);
-      dispatch( 'load' );
+      dispatch( 'getAll' );
     }
   }
 })

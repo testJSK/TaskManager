@@ -36,7 +36,7 @@ import { mapGetters } from 'vuex'
 
 export default {
 	name: 'AppAddChildForm',
-	props: { parentId: String },
+	props: { parentTask: Object },
 	data:()=>({
 		task:{ },
 		persons: { },
@@ -60,15 +60,23 @@ export default {
 	},
 	methods: {
 		async addChildTask(){
+			this.newChildTask.parentId = this.parentTask.id;
+			this.newChildTask.dateStart = new Date();
+			this.newChildTask.managerId = this.parentTask.managerId;
+
 			console.log('this.newChildTask.parentId = this.task.id;')
+			console.log(this.newChildTask)
+			// this.$api.tasks++++---
 			// console.log(this.getAll)
 			// this.workApps =this.getAllWorkApps
 		},
 
 	},
 	async created(){
-		this.task.id = this.parentId;
-			console.log('created(){ {' + this.parentId)
+		console.log(this.newChildTask)
+			// console.log('created(){ {' + this.parentId)
+
+
 	
 	},
 		// shortName(person){			
