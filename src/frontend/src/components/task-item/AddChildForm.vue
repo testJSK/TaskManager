@@ -23,7 +23,7 @@
 					</select>
 				</div>    
 				<div class="col-1 mx-1">					
-					<button class="btn btn-success" @click.prevent="addChildTask">Add</button>
+					<button class="btn btn-success" @click.prevent="tryAddChildTask">Add</button>
 				</div>
 			</div>
 	</div>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
 	name: 'AppAddChildForm',
@@ -59,13 +59,17 @@ export default {
 		},
 	},
 	methods: {
-		async addChildTask(){
-			this.newChildTask.parentId = this.parentTask.id;
+		...mapActions( 'tasks', { addChildTask: 'add' }),
+		async tryAddChildTask(){
 			this.newChildTask.dateStart = new Date();
+			this.newChildTask.parentId = this.parentTask.id;
 			this.newChildTask.managerId = this.parentTask.managerId;
 
 			console.log('this.newChildTask.parentId = this.task.id;')
 			console.log(this.newChildTask)
+
+			this.addChildTask(this.newChildTask)
+
 			// this.$api.tasks++++---
 			// console.log(this.getAll)
 			// this.workApps =this.getAllWorkApps
