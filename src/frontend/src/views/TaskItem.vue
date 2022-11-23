@@ -9,7 +9,7 @@
 		<app-add-child-form 
 			:parentTask="task"
 		></app-add-child-form>
-		<app-child-list-form></app-child-list-form>
+		<app-child-list-form :taskList="[{id: 57},{id: 58}]"></app-child-list-form>
 </template>
 
 <script>

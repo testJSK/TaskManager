@@ -77,7 +77,7 @@ export default {
 
 	},
 	async created(){
-		console.log(this.newChildTask)
+		// console.log(this.newChildTask)
 			// console.log('created(){ {' + this.parentId)
 
 

@@ -3,16 +3,16 @@
 	
 <div>
    <h3> Задачи:</h3>
-		<!-- <div class="row g-0 align-items-end my-3">
+		<div class="row g-0 align-items-end my-3">
 			<ol class="list-group list-group-numbered">
 				<li class="list-group-item" v-for="i in childTasks" :key="i.id">
-					{{ i.title }} {{ workApps.find( app => (app.id === i.workAppId).title) }}
-					<router-link :to="{ name: 'tasks', params: { id: i.id } }">    
-						<button class="btn btn-primary" @click="getTask(i.id)">...</button>
+					<!-- {{ i.title }} {{ workApps.find( app => (app.id === i.workAppId).title) }} -->
+					<router-link :to="{ name: 'taskitem', params: { id: i.id } }">    
+						<button class="btn btn-primary" >...</button>
 					</router-link>
 				</li>
 			</ol>
-		</div> -->
+		</div>
 	</div>
 </div>
 
@@ -21,7 +21,7 @@
 <script>
 export default {
 	name: 'AppChildListForm',
-	// props: { task: Object },
+	props: { taskList: Object },
 	data:()=>({
 		task:{ },
 		persons:{ },
@@ -49,6 +49,9 @@ export default {
 		// 	let options = { year: 'numeric', month: 'numeric', day: 'numeric'};
 		// 	return  d.toLocaleDateString('ru-RU', options);
 		// }
+	},
+	async created(){
+		this.childTasks = this.taskList;
 	},
 }
 </script>
