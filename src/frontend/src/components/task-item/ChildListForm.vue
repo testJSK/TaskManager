@@ -6,16 +6,7 @@
 		<div class="row g-0 align-items-end my-3">
 			<ol class="list-group list-group-numbered">
 				<li class="list-group-item" v-for="i in childTasks" :key="i.id">
-					<!-- {{ i.title }} {{ workApps.find( app => (app.id === i.workAppId).title) }} -->
-					<!-- <router-link :to="{ name: 'taskitem', params: { id: i.id } }">    
-						<button class="btn btn-primary" @click="console.log(e.target)" >...</button>
-					</router-link> -->
-
-					<button 
-						class="btn btn-primary" 
-						@click="this.$router.push('/task/'+ i.id )"
-					>...</button>
-						<!-- @click="$router.push({name: 'taskitem', params: { id: i.id }})" -->
+					<router-link :to="{ name: 'taskitem', params:{ id: i.id } }">+++++++</router-link><br>
 				</li>
 			</ol>
 		</div>
@@ -55,6 +46,9 @@ export default {
 		// 	let options = { year: 'numeric', month: 'numeric', day: 'numeric'};
 		// 	return  d.toLocaleDateString('ru-RU', options);
 		// }
+	},
+	watch(){
+		
 	},
 	async created(){
 		this.childTasks = this.taskList;

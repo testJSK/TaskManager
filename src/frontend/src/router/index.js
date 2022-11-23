@@ -9,6 +9,13 @@ export default () => {
     history: createWebHistory(process.env.BASE_URL),
     routes
   });
+
+	router.beforeEach((to,from,next) => {
+		if(to.name === 'taskitem'){
+			console.log('router.beforeEach((to,from,next) => {')
+		}
+		next()
+	});
   
   return router;
 };

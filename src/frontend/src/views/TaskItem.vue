@@ -68,7 +68,13 @@ export default {
    }   
   },
  },
-	async created(){
+ watch: {
+	async id(){
+		this.task = await this.$api.tasks.getOne(this.id)
+
+	},
+ },
+async created(){
 		
 
 
