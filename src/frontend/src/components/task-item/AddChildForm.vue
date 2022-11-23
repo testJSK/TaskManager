@@ -103,9 +103,8 @@ export default {
 	//  console.log(this.newChildTask)
 
 	//  // let result = await this.$api.tasks.add(this.newChildTask)
-	 
 	//  this.childTasks = await this.$api.tasks.allByParentId(this.task.id);
-	 
+
 	// },
 	// beforeRouteUpdate( to, from, next){
 	// 	next( ()=>{

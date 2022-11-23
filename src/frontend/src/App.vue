@@ -19,7 +19,7 @@
           <router-link to="/about">About</router-link>
         </div>
         <div>
-          <router-link to="/panel/persons">Admin</router-link>
+          <router-link to="/panel/persons">Panel</router-link>
         </div>          
       </nav> 
     </div>

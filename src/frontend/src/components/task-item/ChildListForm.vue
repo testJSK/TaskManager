@@ -7,9 +7,15 @@
 			<ol class="list-group list-group-numbered">
 				<li class="list-group-item" v-for="i in childTasks" :key="i.id">
 					<!-- {{ i.title }} {{ workApps.find( app => (app.id === i.workAppId).title) }} -->
-					<router-link :to="{ name: 'taskitem', params: { id: i.id } }">    
-						<button class="btn btn-primary" >...</button>
-					</router-link>
+					<!-- <router-link :to="{ name: 'taskitem', params: { id: i.id } }">    
+						<button class="btn btn-primary" @click="console.log(e.target)" >...</button>
+					</router-link> -->
+
+					<button 
+						class="btn btn-primary" 
+						@click="this.$router.push('/task/'+ i.id )"
+					>...</button>
+						<!-- @click="$router.push({name: 'taskitem', params: { id: i.id }})" -->
 				</li>
 			</ol>
 		</div>
