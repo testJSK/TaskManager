@@ -9,7 +9,8 @@
 		<app-add-child-form 
 			:parentTask="task"
 		></app-add-child-form>
-		<app-child-list-form :taskList="[{id: 57},{id: 58}]"></app-child-list-form>
+		<app-child-list-form :taskList="childTasks"></app-child-list-form>
+		<!-- <app-child-list-form :taskList="[{id: 57},{id: 58}]"></app-child-list-form> -->
 </template>
 
 <script>
@@ -89,7 +90,7 @@ async created(){
 		// this.childTasks = await this.$api.tasks.allByParentId( this.task.id)     
 
 
-		// this.childTasks = await this.$api.tasks.allByParentId(this.task.id) 
+		this.childTasks = await this.$api.tasks.allByParentId(this.task.id) 
 		// this.taskTypesSelected = this.task.taskTypeId;
 		// this.workAppsSelected = this.task.workAppId;		
  },

@@ -68,11 +68,10 @@ export default {
 			console.log('this.newChildTask.parentId = this.task.id;')
 			console.log(this.newChildTask)
 
-			this.addChildTask(this.newChildTask)
-
-			// this.$api.tasks++++---
-			// console.log(this.getAll)
-			// this.workApps =this.getAllWorkApps
+			let res = await this.addChildTask(this.newChildTask)
+			if(res.includes('add')){
+				this.newChildTask.title = ''
+			}
 		},
 
 	},

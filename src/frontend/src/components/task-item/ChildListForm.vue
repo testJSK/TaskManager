@@ -5,8 +5,10 @@
    <h3> Задачи:</h3>
 		<div class="row g-0 align-items-end my-3">
 			<ol class="list-group list-group-numbered">
-				<li class="list-group-item" v-for="i in childTasks" :key="i.id">
-					<router-link :to="{ name: 'taskitem', params:{ id: i.id } }">+++++++</router-link><br>
+				<li class="list-group-item" v-for="i in taskList" :key="i.id">
+					<router-link :to="{ name: 'taskitem', params:{ id: i.id } }">
+						<button class="btn btn-primary"
+							>...</button></router-link><br>					
 				</li>
 			</ol>
 		</div>
@@ -16,6 +18,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
 	name: 'AppChildListForm',
 	props: { taskList: Object },
@@ -27,6 +31,7 @@ export default {
 		childTasks: {id: 1, title: "title",  },
 	}),
 	computed: {
+		// ...mapGetters( 'tasks', { childTaskList: 'tasksDetailedByParentId' })
 		// id(){ return this.task.id;	},
 		// title(){ return this.task.title; },
 		// initiator(){ return this.shortName(this.task.initiator); },
@@ -48,7 +53,7 @@ export default {
 		// }
 	},
 	watch(){
-		
+		// childTaskList(this.id)
 	},
 	async created(){
 		this.childTasks = this.taskList;

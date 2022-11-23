@@ -38,8 +38,10 @@ export default ( tasksApi, formatHelper ) => ({
 				return { initiator: { ...initiator }, manager: { ...manager }, ...task };
 			});
 		},
+		tasksDetailedByParentId: getters => id => 
+				
+			getters.tasksDetailed.some(task => task.parentId === id)
 	},
-
 	mutations: {
 		getAll( state, tasks ) {
 			state.items = tasks;
@@ -69,6 +71,7 @@ export default ( tasksApi, formatHelper ) => ({
 		async add( { dispatch }, task ) {
 			const result = await tasksApi.add(task);
 			console.log(result)
+			return result;
 		},
 	} 
 })
