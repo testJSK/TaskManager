@@ -1,4 +1,6 @@
 <template>
+<div v-if="task.id">
+
 		<app-main-form
 			:prop_task="task"
 			:persons="persons"
@@ -15,6 +17,10 @@
 
 		</div>
 	</div>
+</div>
+<div v-else>
+	<h1>Заявка не найдена</h1>
+</div>
 		<!-- <app-child-list-form :taskList="[{id: 57},{id: 58}]"></app-child-list-form> -->
 </template>
 
@@ -76,6 +82,7 @@ export default {
  watch: {
 	async id(){
 		this.task = await this.$api.tasks.getOne(this.id)
+		this.childTasks = await this.$api.tasks.allByParentId(this.task.id) 
 
 	},
  },
