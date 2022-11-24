@@ -1,5 +1,4 @@
 <template>
-	
 		<app-main-form
 			:prop_task="task"
 			:persons="persons"
@@ -9,7 +8,13 @@
 		<app-add-child-form 
 			:parentTask="task"
 		></app-add-child-form>
+	<div class="row g-0">
+		<div class="col-1"></div>
+		<div class="col-10">
 		<app-child-list-form :taskList="childTasks"></app-child-list-form>
+
+		</div>
+	</div>
 		<!-- <app-child-list-form :taskList="[{id: 57},{id: 58}]"></app-child-list-form> -->
 </template>
 
@@ -48,7 +53,6 @@ export default {
 		} ),
   async updateTask(){
    let result = await this.$api.tasks.update(this.task)
-  //  console.log(result)
   },
   async getTask(id){
    this.persons = await this.$api.persons.all();
@@ -76,23 +80,11 @@ export default {
 	},
  },
 async created(){
-		
-
-
-		// console.log(this.task.id)
 		this.persons = await this.$api.persons.all();
 		this.workApps = await this.$api.workApps.all();
 		this.taskTypes = await this.$api.taskTypes.all();
-		// console.log(this.id)
 		this.task = await this.$api.tasks.getOne(this.id)
-		// console.log(this.task)
-
-		// this.childTasks = await this.$api.tasks.allByParentId( this.task.id)     
-
-
 		this.childTasks = await this.$api.tasks.allByParentId(this.task.id) 
-		// this.taskTypesSelected = this.task.taskTypeId;
-		// this.workAppsSelected = this.task.workAppId;		
  },
 }
 </script>

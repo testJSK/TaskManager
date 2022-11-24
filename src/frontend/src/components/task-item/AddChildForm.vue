@@ -73,86 +73,8 @@ export default {
 				this.newChildTask.title = ''
 			}
 		},
-
 	},
 	async created(){
-		// console.log(this.newChildTask)
-			// console.log('created(){ {' + this.parentId)
-
-
-	
 	},
-		// shortName(person){			
-		// 	let lb = person.lastNameBase ? person.lastNameBase : '';			
-		// 	let ln = person.lastNameWho ? person.lastNameWho : '';
-		// 	let fb = person.firstNameBase ? (person.firstNameBase).substring(0,1) : '';
-		// 	let mb = person.firstNameBase ? (person.firstNameBase).substring(0,1) : '';						
-		// 	return `${lb}${ln} ${fb}${mb}`
-		// },
-		// shortDate(date){
-		// 	let d = new Date(date);
-		// 	let options = { year: 'numeric', month: 'numeric', day: 'numeric'};
-		// 	return  d.toLocaleDateString('ru-RU', options);
-		// }
-
-	// 	  async addChildTask(){
-	//  this.newChildTask.dateStart = new Date();
-	//  this.newChildTask.managerId = this.task.managerId;
-	//  this.newChildTask.parentId = this.task.id
-	//  console.log(this.newChildTask)
-
-	//  // let result = await this.$api.tasks.add(this.newChildTask)
-	//  this.childTasks = await this.$api.tasks.allByParentId(this.task.id);
-
-	// },
-	// beforeRouteUpdate( to, from, next){
-	// 	next( ()=>{
-		// 		this.workApps =this.getAll
-	// 		console.log('beforeRouteEnter(){')
-
-	// 	})
-
-	// }
-	// ,
-	// onActivated(){
-		
-		// 	console.log(' activated(){ -6+++')
-	// 	this.workApps =this.getAll
-	// 	console.log(this.workApps)
-	// },
-	// 	renderTriggered(){
-			
-	// 		this.$nextTick( () => {
-	// 		this.workApps =this.getAll
-	// 		console.log('this.$nextTick( () => {      this.workApps')	
-	// 		})
-
-	// 	console.log('renderTriggered')
-	// 	// this.workApps =this.getAll
-	// 	console.log(this.workApps)
-	// },
-
-	// async renderTracked(){
-	// 	console.log('actrenderTrackedivated')
-	// 	// this.task = await this.prop_task			
-	// 	this.workApps = this.getAll
-  // },  
-	// async onBeforeUpdated(){
-	// 	console.log('onBeforeUpdated()')
-	// },
-	// async onUpdated(){
-	// 	// console.log('onUpdated(){')
-	// 	// this.task = await this.prop_task
-	// 	console.log(this.task)
-	// },
-  // async activated(){
-	// 	console.log('activated')
-  // },
-  // async renderTriggered(){
-	// 	console.log('renderTriggered')
-	// },
-
-
-
 }
 </script>

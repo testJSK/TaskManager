@@ -1,5 +1,5 @@
 <template>
-  <div class="row all-site">
+  <div class="row g-0 all-site">
     <div class="col-3 g-0 menu-panel" >      
       <a href="/">
 				<div class="logo">
@@ -38,7 +38,6 @@ import AppBreadcrumb from '@/components/header/Breadcrumb.vue'
 export default{
 	// name: 'App',
   components: { AppHeader, AppBreadcrumb },
-	// props: { userStatus: String },
   data:() =>({
     curentPage : "Tasks",
   }),

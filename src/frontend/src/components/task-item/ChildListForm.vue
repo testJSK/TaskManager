@@ -1,19 +1,20 @@
 <template>
-	<div class="row g-0">		
 	
-<div>
    <h3> Задачи:</h3>
-		<div class="row g-0 align-items-end my-3">
-			<ol class="list-group list-group-numbered">
-				<li class="list-group-item" v-for="i in taskList" :key="i.id">
-					<router-link :to="{ name: 'taskitem', params:{ id: i.id } }">
-						<button class="btn btn-primary"
-							>...</button></router-link><br>					
-				</li>
-			</ol>
-		</div>
-	</div>
-</div>
+		
+			
+			
+				<ol class="list-group list-group-numbered">
+					<li class="list-group-item" v-for="i in taskList" :key="i.id">
+								{{ i.id }}
+								{{ i.title }}
+						<router-link :to="{ name: 'taskitem', params:{ id: i.id } }">
+							<button class="btn btn-primary"
+								>...</button></router-link><br>					
+						
+					</li>
+				</ol>
+
 
 </template>
 
@@ -60,3 +61,9 @@ export default {
 	},
 }
 </script>
+
+<style scoped>
+li {
+	text-align: left;
+}
+</style>

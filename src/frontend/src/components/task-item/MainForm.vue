@@ -55,7 +55,7 @@
 				<textarea type="text" class="form-control" v-model="task.description"></textarea>
 			</div>
 <!--  -->
-			<hr>
+			<!-- <hr> -->
 			<div class="row g-0 my-4">
 				<div class="col">
 				<router-link :to="{ name: 'home'}">
@@ -67,16 +67,8 @@
 				</div>
 			</div>
 			</div>
-			</div>
-			
-
+			</div>	
 <hr>
-
-<!-- {{ task }}
-<br>
-<br>
-<br>
-{{prop_task }} -->
 </template>
 
 <script>
@@ -85,9 +77,8 @@ export default {
 	props: { prop_task: Object, persons: Object, workApps: Object, taskTypes: Object},
 	data:()=>({
 		task:{ },
-		// task: this.prop_task,
 		isShowForm: false,
-  editmode: false,
+	  editmode: false,
   
   initiatorSelected: null,
   managerSelected: null,
@@ -99,19 +90,11 @@ export default {
 	computed: {
 		mainFormTitle(){
 			this.task = this.prop_task
-			// console.log('-----------------')
-
 			return (this.task.parentId) ? "Задача" : "Запрос"
 		},
 		test_task(){
-			// console.log(this.task)
 			return this.task
 		}
-		// id(){ return this.task.id;	},
-		// title(){ return this.task.title; },
-		// initiator(){ return this.shortName(this.task.initiator); },
-		// manager(){ return this.shortName(this.task.manager); },
-		// dateStart(){ return this.shortDate(this.task.dateStart); },
 	},
 	methods: {
 		async updateTask(){
@@ -130,8 +113,6 @@ export default {
 				this.$router.push({name: 'taskitem', params: { id:taskId } })
 					
 			}
-
-			//   // let result = await this.$api.tasks.add(this.newChildTask)
 		},
 		shortName(person){			
 			let lb = person.lastNameBase ? person.lastNameBase : '';			
@@ -152,40 +133,22 @@ export default {
 		res = res + ' ' + this.taskType
 		return res ;
 	},
-		// shortDate(date){
-		// 	let d = new Date(date);
-		// 	let options = { year: 'numeric', month: 'numeric', day: 'numeric'};
-		// 	return  d.toLocaleDateString('ru-RU', options);
-		// }
+
 	},
 	async created(){
-		// console.log("create() MainFormTASK + ")    
 	},
-	// async beforeMount(){
-	// 	console.log('beforeMount(){')
-	// 	this.$nextTick( async () => {
-	// 		console.log('this.$nextTick( () => {')
-	// 		console.log(this.task)
-	// 	})
-		
-	// },
+
 	async renderTracked(){
-		// console.log('actrenderTrackedivated')
-		// this.task = await this.prop_task			
   },  
 	async onBeforeUpdated(){
-		// console.log('onBeforeUpdated()')
 	},
 	async onUpdated(){
-		// console.log('onUpdated(){')
-		// this.task = await this.prop_task
-		// console.log(this.task)
+
 	},
   async activated(){
 		console.log('activated')
   },
   async renderTriggered(){
-		// console.log('renderTriggered')
 
 
   },
