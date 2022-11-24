@@ -58,7 +58,8 @@
 			<!-- <hr> -->
 			<div class="row g-0 my-4">
 				<div class="col">
-				<router-link :to="{ name: 'home'}">
+				<!-- <router-link :to="{ name: 'home'}"> -->
+				<router-link :to="{ name: 'task'}">
 					<button class="btn btn-danger" @click="closeFormTaskAdd">Close</button>
 				</router-link>
 				<router-link :to="{ name: 'task'}">

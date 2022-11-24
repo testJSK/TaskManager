@@ -38,9 +38,10 @@ export default ( tasksApi, formatHelper ) => ({
 				return { initiator: { ...initiator }, manager: { ...manager }, ...task };
 			});
 		},
-		tasksDetailedByParentId: getters => id => 
-				
-			getters.tasksDetailed.some(task => task.parentId === id)
+		tasksDetailedByParentId: getters => id => getters.tasksDetailed.some(task => task.parentId === id),
+		requestsDetailed: (state, getters, rootState, rootGetters) => {
+			getters.tasksDetailed.some( task => task.parentId !== null)
+		},
 	},
 	mutations: {
 		getAll( state, tasks ) {

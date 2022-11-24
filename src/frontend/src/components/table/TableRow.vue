@@ -1,5 +1,7 @@
 <template>
-	<td>{{ id }}</td>
+	<router-link :to="{ name: 'taskitem', params: {id: id} }">
+		<td>{{ id }}</td>
+	</router-link>
 	<td>{{ title }}</td>
 	<td>{{ initiator }}</td>
   <td>{{ manager }}</td>
