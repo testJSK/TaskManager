@@ -28,9 +28,15 @@ public class TaskController {
     public ResponseEntity getAll(@RequestParam(required=false) String parentId) {     
         try {
             if(parentId == null) {
+							// parentId == null  - get all 
+							// parentId == ''    - get all with parentId == null
+							// parentId == id    - get all with parentId == id
                 return ResponseEntity.ok(taskService.getAll());
-            } else {
-                return ResponseEntity.ok(taskService.getAllByParentId(Long.valueOf(parentId)));
+            } else if (parentId == "") {
+							return ResponseEntity.ok(taskService.getAllByParentId(String.valueOf(parentId)));
+
+						} else {
+                return ResponseEntity.ok(taskService.getAllByParentId(String.valueOf(parentId)));
             }
             
         } catch (Exception e) {
