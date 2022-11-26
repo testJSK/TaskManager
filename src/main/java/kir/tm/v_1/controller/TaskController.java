@@ -24,22 +24,32 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
     
+		
+									// parentId == null  - get all 
+									// parentId == ''    - get all with parentId == null
+									// parentId == id    - get all with parentId == id
     @GetMapping
     public ResponseEntity getAll(@RequestParam(required=false) String parentId) {     
-        try {
-            if(parentId == null) {
-							// parentId == null  - get all 
-							// parentId == ''    - get all with parentId == null
-							// parentId == id    - get all with parentId == id
-                return ResponseEntity.ok(taskService.getAll());
-            } else if (parentId == "") {
-							return ResponseEntity.ok(taskService.getAllByParentId(String.valueOf(parentId)));
+			System.out.println("controller 33"  + parentId);
+			System.out.println("controller 34"  + parentId);
+			try {
+				if(parentId == null) {
+					System.out.println("controller "  + " NULL ");
+					return ResponseEntity.ok(taskService.getAll());
+					
+				}
+				if (parentId == "") {
+					System.out.println("controller "  + " EMPTY ");					
+					System.out.println( parentId.length()  );
+					return ResponseEntity.ok(taskService.getAllByParentId(String.valueOf(parentId)));
 
-						} else {
-                return ResponseEntity.ok(taskService.getAllByParentId(String.valueOf(parentId)));
-            }
+				}
+
+        return ResponseEntity.badRequest().body("error get tasks ");
             
         } catch (Exception e) {
+					System.out.println("controller "  + " CATCH ");					
+
             return ResponseEntity.badRequest().body("error get All ");
         }    
     }       

@@ -16,57 +16,69 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class TaskService {
-    
-    @Autowired
-    private TaskRepo taskRepo;
-    
-    public List<TaskEntity> getAll() throws Exception {
-        List<TaskEntity> tasks = (List<TaskEntity>) taskRepo.findAll();
-        
-        if (tasks == null ) {
-            throw new Exception("tasks do not get from db");
-        }
-        return tasks;
-    }
 
-    public List<TaskEntity> getAllByParentId(String parentId) throws Exception {
-        List<TaskEntity> tasks = (List<TaskEntity>) taskRepo.findAllByParentId(parentId);
+	@Autowired
+	private TaskRepo taskRepo;
 
-        if(tasks == null ) {
-            throw new Exception("dont get by perent ID");
-        }
-        return tasks;
-    }
-    
-    public Optional<TaskEntity> getOne(Long id) throws NotFoundException{
-        Optional<TaskEntity> task = taskRepo.findById(id);
-        
-        if(task != null) {
-            return task;
-        }
-        throw new NotFoundException("task by id");
-    }
-    
-    public TaskEntity add(TaskEntity task) {
-        if(task.getDateStart() == null) {
-            task.setDateStart(new Date());
-        }
-        return taskRepo.save(task);
-    }
-    
-    public TaskEntity update(Long id, TaskEntity newTask) throws UpdateException {
-        System.out.println(id);
-        
-        TaskEntity task = taskRepo.findById(id).get();
-        
-        task = newTask;
-        task.setId(id);
-        
-        if(task == null ) {
-            throw new UpdateException("error update task " );
-        }
-       
-        return taskRepo.save( task );        
+	public List<TaskEntity> getAll() throws Exception {
+			List<TaskEntity> tasks = (List<TaskEntity>) taskRepo.findAll();
+			
+			if (tasks == null ) {
+					throw new Exception("tasks do not get from db");
+			}
+			return tasks;
+	}
 
-    }
+	public List<TaskEntity> getAllByParentId(String parentId) throws Exception {
+	String id = parentId;
+	List<TaskEntity> tasks = (List<TaskEntity>) taskRepo.findAllByParentId(Long.valueOf(parentId));
+	if(id == ""){
+
+		System.out.println("SERVICE  EMPTY ");
+
+		tasks = (List<TaskEntity>) taskRepo.findAllByParentIdIsNull();
+		System.out.println(tasks);
+
+
+	} else {
+		tasks = (List<TaskEntity>) taskRepo.findAllByParentId(Long.valueOf(parentId));
+	}
+
+	if(tasks == null ) {
+		throw new Exception("dont get by perent ID");
+	}
+		return tasks;
+	}
+
+	public Optional<TaskEntity> getOne(Long id) throws NotFoundException{
+	Optional<TaskEntity> task = taskRepo.findById(id);
+
+	if(task != null) {
+		return task;
+	}
+		throw new NotFoundException("task by id");
+	}
+
+	public TaskEntity add(TaskEntity task) {
+		if(task.getDateStart() == null) {
+		task.setDateStart(new Date());
+	}
+		return taskRepo.save(task);
+	}
+
+	public TaskEntity update(Long id, TaskEntity newTask) throws UpdateException {
+	System.out.println(id);
+
+	TaskEntity task = taskRepo.findById(id).get();
+
+	task = newTask;
+	task.setId(id);
+
+	if(task == null ) {
+		throw new UpdateException("error update task " );
+	}
+
+	return taskRepo.save( task );        
+
+	}
 }

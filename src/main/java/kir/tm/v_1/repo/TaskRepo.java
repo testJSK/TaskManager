@@ -15,6 +15,6 @@ public interface TaskRepo extends CrudRepository<TaskEntity, Long>{
 
     public List <TaskEntity> findAllByParentId(Long parentId);
 
-		public List <TaskEntity> firdAllByParentIdIsNull();
+		public List <TaskEntity> findAllByParentIdIsNull();
     
 }
