@@ -30,22 +30,26 @@ public class TaskController {
 									// parentId == id    - get all with parentId == id
     @GetMapping
     public ResponseEntity getAll(@RequestParam(required=false) String parentId) {     
-			System.out.println("controller 33"  + parentId);
-			System.out.println("controller 34"  + parentId);
+			
+			System.out.println("controller 34 "  + parentId);
 			try {
 				if(parentId == null) {
 					System.out.println("controller "  + " NULL ");
 					return ResponseEntity.ok(taskService.getAll());
 					
-				}
-				if (parentId == "") {
+				} else if (parentId == "") {
 					System.out.println("controller "  + " EMPTY 42");
 					
 					return ResponseEntity.ok(taskService.getAllByParentId(String.valueOf(parentId)));
 
+				} else {
+					System.out.println("controller "  + " parentId = Value ");
+					
+					return ResponseEntity.ok(taskService.getAllByParentId(String.valueOf(parentId)));
 				}
+				
 
-        return ResponseEntity.badRequest().body("error get tasks ");
+        // return ResponseEntity.badRequest().body("error get tasks ");
             
         } catch (Exception e) {
 					System.out.println("controller "  + " CATCH ");					
