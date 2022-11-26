@@ -24,29 +24,24 @@ public class TaskService {
 			List<TaskEntity> tasks = (List<TaskEntity>) taskRepo.findAll();
 			
 			if (tasks == null ) {
-					throw new Exception("tasks do not get from db");
+				throw new Exception("tasks do not get from db");
 			}
 			return tasks;
-	}
+		}
 
 	public List<TaskEntity> getAllByParentId(String parentId) throws Exception {
-	String id = parentId;
-	List<TaskEntity> tasks = (List<TaskEntity>) taskRepo.findAllByParentId(Long.valueOf(parentId));
-	if(id == ""){
+		
+		List<TaskEntity> tasks;
+		System.out.println("SERVICE   " + parentId.isEmpty() );
 
-		System.out.println("SERVICE  EMPTY ");
+		if( parentId.isEmpty()){	// parentId = ""
+			System.out.println("SERVICE  EMPTY ");
+			tasks = (List<TaskEntity>) taskRepo.findAllByParentIdIsNull();
 
-		tasks = (List<TaskEntity>) taskRepo.findAllByParentIdIsNull();
-		System.out.println(tasks);
+		} else {									// parentId = 123
+			tasks = (List<TaskEntity>) taskRepo.findAllByParentId(Long.valueOf(parentId));
 
-
-	} else {
-		tasks = (List<TaskEntity>) taskRepo.findAllByParentId(Long.valueOf(parentId));
-	}
-
-	if(tasks == null ) {
-		throw new Exception("dont get by perent ID");
-	}
+		}
 		return tasks;
 	}
 

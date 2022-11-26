@@ -39,8 +39,8 @@ public class TaskController {
 					
 				}
 				if (parentId == "") {
-					System.out.println("controller "  + " EMPTY ");					
-					System.out.println( parentId.length()  );
+					System.out.println("controller "  + " EMPTY 42");
+					
 					return ResponseEntity.ok(taskService.getAllByParentId(String.valueOf(parentId)));
 
 				}
