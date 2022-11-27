@@ -1,5 +1,5 @@
 <template>
-<div v-if="task.id">
+<div v-if="task.id" class="task-item">
 
 		<app-main-form
 			:prop_task="task"
@@ -96,6 +96,9 @@ async created(){
 }
 </script>
 <style scoped>
+  .task-item input {
+	font-size: 60% !important;
+ }
  .persons {
   background-color: rgb(111, 150, 137)
  }

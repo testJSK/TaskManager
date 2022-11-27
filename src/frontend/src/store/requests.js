@@ -37,7 +37,7 @@ export default ( requestsApi ) => ({
 
 				return { initiator: { ...initiator }, manager: { ...manager }, ...request };
 			});
-		},
+		},		
 		// requestsDetailedByParentId: getters => id => getters.requestsDetailed.some(request => request.parentId === id),
 		// requestsDetailed: (state, getters, rootState, rootGetters) => {
 		// 	getters.requestsDetailed.some( request => request.parentId !== null)

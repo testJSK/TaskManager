@@ -6,7 +6,7 @@
 		<div class="col-8">
 		</div>		
 		<div class="col-2">
-			<img class="icon" src="/icons/right-from-bracket.svg" alt="log out">Log out
+			<img class="icon" src="/icons/right-from-bracket.svg" alt="log out"> Log out
 		</div>
 	</div>
 

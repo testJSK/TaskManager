@@ -1,9 +1,9 @@
 <template>
   <div class="row g-0 tasks">
     <div class="col">
-			<!-- {{ requests }} -->
+			<!-- {{ requestsSort }} -->
 			<div v-if="requests">
-				<app-table :inputDate="requests"></app-table>				
+				<app-table :inputDate="requestsSort"></app-table>				
 			</div>
     </div>
   </div>
@@ -19,6 +19,9 @@ export default {
   data: () => ({ }),
   computed: {     
     ...mapGetters( 'requests', { requests: 'requestsDetailed' } ),
+		requestsSort(){
+			return this.requests.sort( (a, b) => { return b.id - a.id })
+		},
     id(){
 			return this.$route.params.id;
     },
