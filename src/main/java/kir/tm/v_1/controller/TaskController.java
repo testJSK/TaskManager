@@ -26,7 +26,7 @@ public class TaskController {
     
 		
 									// parentId == null  - get all 
-									// parentId == ''    - get all with parentId == null
+									// parentId				   - get all with parentId == null
 									// parentId == id    - get all with parentId == id
     @GetMapping
     public ResponseEntity getAll(@RequestParam(required=false) String parentId) {     

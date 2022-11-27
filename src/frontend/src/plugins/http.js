@@ -1,5 +1,6 @@
 import axios from 'axios';
 import createTasksApi from '@/api/tasks';
+import createRequestsApi from '@/api/requests'
 import createPersonsApi from '@/api/persons';
 import createWorkAppsApi from '@/api/work_apps'
 import createTaskTypesApi from '@/api/task_types'
@@ -16,8 +17,9 @@ export default () =>  {
 	});
 
 
-	const api = {		
+	const api = {
 		tasks: createTasksApi(http),
+		requests: createRequestsApi(http),
 		persons: createPersonsApi(http),
 		workApps: createWorkAppsApi(http),
 		taskTypes: createTaskTypesApi(http),		

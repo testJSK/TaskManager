@@ -39,9 +39,9 @@ export default ( tasksApi, formatHelper ) => ({
 			});
 		},
 		tasksDetailedByParentId: getters => id => getters.tasksDetailed.some(task => task.parentId === id),
-		requestsDetailed: (state, getters, rootState, rootGetters) => {
-			getters.tasksDetailed.some( task => task.parentId !== null)
-		},
+		// requestsDetailed: (state, getters, rootState, rootGetters) => {
+		// 	getters.tasksDetailed.some( task => task.parentId !== null)
+		// },
 	},
 	mutations: {
 		getAll( state, tasks ) {

@@ -18,8 +18,10 @@ export default () => {
 		
 		
 		store.dispatch('workApps/getAll').then( () => {
+			store.dispatch('requests/getAll');
 			store.dispatch('tasks/getAll').then( () => {
 				store.dispatch('persons/getAll');
+
 			});
 		});
 		store.dispatch('taskTypes/getAll');
