@@ -1,8 +1,8 @@
 <template>
   <div class="row g-0 tasks">
     <div class="col">
-			<div v-if="tasks">
-				<app-table :inputDate="tasks"></app-table>				
+			<div v-if="requests">
+				<app-table :inputDate="requests"></app-table>				
 			</div>
     </div>
   </div>
@@ -17,7 +17,7 @@ export default {
   components: {  AppTable },
   data: () => ({ }),
   computed: {     
-    ...mapGetters( 'tasks', { tasks: 'tasksDetailed' } ),
+    ...mapGetters( 'requests', { requests: 'requestsDetailed' } ),
     id(){
       return this.$route.params.id;
     },
