@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "issues")
+@Table(name = "issues", schema = "public")
 public class Issue implements Serializable {
 
 	@Id 	@Column(name = "issue_id") 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +31,9 @@ public class Issue implements Serializable {
 	
 	@Column(name = "manager_id")
 	private Long managerId;
+
+	@Column(name = "type_id")
+	private Long typeId;
 	
 	@Column(name = "date_start")
 	private Date dateStart;
@@ -47,7 +50,8 @@ public class Issue implements Serializable {
 	@Column(name = "status_id")
 	private Long statusId;
 
-	@Column(name = "price")
-	private Long price;
+	@Column(name = "operation_info")	
+	private String operationInfo;
+	
 	
 }
