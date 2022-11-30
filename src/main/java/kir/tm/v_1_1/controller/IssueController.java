@@ -27,12 +27,10 @@ public class IssueController {
 	@GetMapping
 	public ResponseEntity getAll(@RequestParam(required=false) String parentId) {
 
-		if(false) {
-			public Issue issues = issueService.getAll();
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		}
+			
+		
 		return ResponseEntity.ok("[{result: true},{result: true}]".toString());
-		//"[{'result': true},{'result': true}]".toString();
+		
 		
 	}
 
