@@ -33,16 +33,6 @@ CREATE TABLE public.issues (
 -- $ gradle flywayMigrate -i
 
 
-
-
-
-
-
-
-
-
-
-
 -- public.persons definition
 -- Drop table
 -- DROP TABLE public.persons;
