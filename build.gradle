@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.7.4'
 	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
 	id 'java'
+	id 'org.flywaydb.flyway' version '9.8.1'
 }
 
 group = 'kir'
@@ -19,16 +20,24 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
 
-compile "org.flywaydb:flyway-core:9.8.1"
+
 
 
 flyway {
-    url = 'jdbc:postgresql://localhost:5432/tmdb_008'
-    user = 'postgres'
+	url = 'jdbc:postgresql://localhost:5432/tmdb_008'
+	user = 'postgres'
+	password = 'kir'
+	schemas = ['public', 'schema2', 'schema3']
+	placeholders = [
+			'keyABC': 'valueXYZ',
+			'otherplaceholder': 'value123'
+	]
 }
