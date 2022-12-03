@@ -25,7 +25,7 @@ CREATE TABLE public.issues (
 	status_id smallint null,
 	date_start timestamp null,
 	date_end timestamp NULL,
-	operation_info json null,
+	operation_info jsonb null,
 	CONSTRAINT issues_pkey PRIMARY KEY (issue_id)
 ) engine=MyISAM;
 
