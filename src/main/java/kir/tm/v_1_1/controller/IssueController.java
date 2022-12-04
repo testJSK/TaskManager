@@ -27,6 +27,7 @@ public class IssueController {
 	@GetMapping
 	public ResponseEntity getAll(@RequestParam(required=false) String parentId) {
 
+		//@PathVariable  @RequestBody 
 			
 		
 		return ResponseEntity.ok("[{result: true},{result: true}]".toString());
