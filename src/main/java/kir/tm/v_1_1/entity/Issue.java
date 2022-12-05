@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "issues", schema = "dbo")
+@Table(name = "issues", schema = "public")
 public class Issue implements Serializable {
 
 	@Id 	@Column(name = "issue_id") 	@GeneratedValue(strategy = GenerationType.IDENTITY)
