@@ -25,14 +25,3 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-
-// flyway {
-// 	url = 'jdbc:postgresql://localhost:5432/tmdb_008'
-// 	user = 'postgres'
-// 	password = 'kir'
-// 	schemas = ['dbo']
-// 	placeholders = [
-// 			'keyABC': 'valueXYZ',
-// 			'otherplaceholder': 'value123'
-// 	]
-// }
