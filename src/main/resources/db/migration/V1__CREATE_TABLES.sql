@@ -25,4 +25,3 @@
 -- 	additional_data jsonb NULL,
 -- 	CONSTRAINT issues_pkey PRIMARY KEY (issue_id)
 -- );
-
