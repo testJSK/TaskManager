@@ -63,6 +63,4 @@ CREATE SCHEMA public
 -- -- -- --  END  -- -- --
 -- -- -- -- -- -- -- -- --
 
-
-
 -- $ gradle flywayMigrate -i
