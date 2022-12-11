@@ -63,14 +63,14 @@ export default {
       let lastnamewho = person.lastNameWho;
       let firstname = person.firstNameBase;
       let middlename = person.middleNameBase;
-      let result = lastname + ( (lastnamewho !=null) ? lastnamewho : "" ) + ' ' + firstname.substring(0,1).toUpperCase() + middlename.substring(0,1).toUpperCase();
+      let result = lastname + ( (lastnamewho != null) ? lastnamewho : "" ) + ' ' + firstname.substring(0,1).toUpperCase() + middlename.substring(0,1).toUpperCase();
       return result;
     },
     showFormTaskAdd(){
-      this.editmode = true
+      this.editmode = true;
     },
     closeFormTaskAdd(){
-      this.editmode = false
+      this.editmode = false;
     },
   },
   async created(){
