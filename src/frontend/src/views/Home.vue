@@ -54,7 +54,7 @@ export default {
       let result = await this.$api.tasks.add(task);
       console.log(result)
       if(result.includes('added')){
-        console.log(result.substring('added'))
+        console.log(result.substring('added'));
         this.editmode = false;
       }
     },
@@ -84,7 +84,7 @@ export default {
 
     let n = a.getFullYear() + '-' +
      ((a.getMonth() > 9) ? a.getMonth() : ("0" + a.getMonth())) + '-' +
-     ((a.getDate() > 9) ? a.getDate() : ("0" + a.getDate()))
+     ((a.getDate() > 9) ? a.getDate() : ("0" + a.getDate()));
 
 console.log(n)
     this.taskStart = n
