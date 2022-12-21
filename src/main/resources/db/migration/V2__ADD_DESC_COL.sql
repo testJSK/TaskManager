@@ -4,4 +4,3 @@
 -- ALTER TABLE public.tasks RENAME COLUMN parent_task_id TO parent_id;
 
 -- INSERT INTO dbo.issues (issue_id, title) values (1, '====-- flyway insert v2 =========');
-
